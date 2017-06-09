@@ -600,7 +600,7 @@
         <!-- FOOTER BOTTOM -->
         <div class="footer_bottom">
             <div>
-                <p>&copy;  2017 Project Team 1A All rights reserved.</p>
+                <p>&copy;  2017 Project Team All rights reserved.</p>
             </div>
         </div>
         <!-- END / FOOTER BOTTOM -->
