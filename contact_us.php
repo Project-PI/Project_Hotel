@@ -1,3 +1,18 @@
+<?php
+include_once ('dbconf.php');
+if(isset($_POST['submit'])){
+    $firstName = $_POST['firstName'];
+    $lastName = $_POST['lastName'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $message = $_POST['message'];
+
+    $sql = "INSERT INTO contact_us (first_name,last_name,email,phone,message) VALUES('$firstName','$lastName','$email','$phone','$message')";
+
+    $result = $conn->query($sql);
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -88,24 +103,24 @@
                 </div>
             </div>
             <div class="blog-left col-md-6 wow slideInRight">
-                <form>
+                <form action="contact_us.php" method="post">
                     <div class="row">
                         <div class="form-group has-warning col-md-6">
-                            <input type="text" class="form-control input-lg" placeholder="First name">
+                            <input type="text" class="form-control input-lg" placeholder="First name" name="firstName">
                         </div>
                         <div class="form-group has-warning col-md-6">
-                            <input type="text" class="form-control input-lg" placeholder="Last name">
+                            <input type="text" class="form-control input-lg" placeholder="Last name" name="lastName">
                         </div>
                     </div>
                     <div class="form-group has-warning">
-                        <input type="email" class="form-control input-lg" placeholder="E-mail">
+                        <input type="email" class="form-control input-lg" placeholder="E-mail" name="email">
                     </div>
                     <div class="form-group has-warning">
-                        <input type="password" class="form-control input-lg" placeholder="Phone number">
+                        <input type="text" class="form-control input-lg" placeholder="Phone number" name="phone">
                     </div>
-                    <textarea class="form-control has-warning" rows="10" placeholder="Message"></textarea>
+                    <textarea class="form-control has-warning" rows="10" placeholder="Message" name="message"></textarea>
                     <div class="btn_sub">
-                        <button type="submit" class="btn btn-lg btn-warning btn-block">Submit</button>
+                        <button type="submit" class="btn btn-lg btn-warning btn-block" name="submit">Submit</button>
                     </div>
                 </form>
             </div>
@@ -218,13 +233,13 @@
                             <div class="tripadvisor">
                                 <p>Now with hotel reviews by</p>
                                 <img src="Public/image/footer_tripadvisor.png" alt="">
-	                                    <span class="tripadvisor-circle">
-	                                        <i></i>
-	                                        <i></i>
-	                                        <i></i>
-	                                        <i></i>
-	                                        <i class="part"></i>
-	                                    </span>
+                                <span class="tripadvisor-circle">
+                                    <i></i>
+                                    <i></i>
+                                    <i></i>
+                                    <i></i>
+                                    <i class="part"></i>
+                                </span>
                             </div>
                         </div>
                     </div>
