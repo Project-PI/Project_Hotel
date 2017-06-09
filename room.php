@@ -1,3 +1,23 @@
+<?php
+include_once ('dbconf.php');
+if(isset($_POST['submit'])){
+    $place = $_POST['place'];
+    $adult = $_POST['adult'];
+    $children = $_POST['children'];
+    $suite = $_POST['suite'];
+    $from_date =strtotime($_POST['from_date']);
+    $from_date = date("Y-m-d",$from_date);
+    $to_date =strtotime($_POST['to_date']);
+    $to_date = date("Y-m-d",$to_date);
+    $cuisine = $_POST['cuisine'];
+
+    $sql = "INSERT INTO booking (place,adult,children,suite,from_date,to_date,cuisine) VALUES('$place','$adult','$children','$suite','$from_date', '$to_date','$cuisine')";
+
+    $result = $conn->query($sql);
+
+}
+?>
+
 <!DOCTYPE html>
 <html >
 <head>
@@ -219,13 +239,13 @@
 <!-- Booking start here -->
 <section id="booking">
     <div class="parallax">
-        <form class="form_booking">
+        <form class="form_booking" method="post" action="room.php">
             <div class="booking_title">
                 <h3>Booking Our Hotel</h3>
             </div>
             <div class="form-group has-warning wow slideInLeft">
                 <label for="selectYourPlace">Your Place</label>
-                <select class="form-control">
+                <select class="form-control" name="place">
                     <option>Select your country...</option>
                     <optgroup label="Asia">
                         <option value="Cam">Cambodia</option>
@@ -252,7 +272,7 @@
             </div>
             <div class="form-group has-warning wow slideInRight">
                 <label for="selectYourPlace">No. of Adults</label>
-                <select type="text" class="form-control">
+                <select type="text" class="form-control" name="adult">
                     <option></option>
                     <option>1</option>
                     <option>2</option>
@@ -267,7 +287,7 @@
             </div>
             <div class="form-group has-warning wow slideInLeft">
                 <label for="selectYourPlace">No. of Children</label>
-                <select type="text" class="form-control">
+                <select type="text" class="form-control" name="children">
                     <option></option>
                     <option>1</option>
                     <option>2</option>
@@ -278,7 +298,7 @@
             </div>
             <div class="form-group has-warning wow slideInRight">
                 <label for="selectYourPlace">Suite</label>
-                <select class="form-control">
+                <select class="form-control" name="suite">
                     <option value="1"></option>
                     <option value="1">Single Room</option>
                     <option value="2">Premium Single Room</option>
@@ -292,13 +312,14 @@
                 </select>
             </div>
             <div class="row">
+
                 <div class="form-group has-warning col-md-6 wow slideInLeft">
                     <label for="exampleInputPassword1">Chack-In Date</label>
-                    <input type="date" class="form-control">
+                    <input type="date" name="from_date" class="form-control">
                 </div>
                 <div class="form-group has-warning col-md-6 wow slideInRight">
                     <label for="exampleInputPassword1">Chack-Out Date</label>
-                    <input type="date" class="form-control">
+                    <input type="date" name="to_date" class="form-control">
                 </div>
             </div>
             <div class="form-group has-warning wow slideInLeft">
@@ -306,21 +327,21 @@
                 <div class="row">
                     <ul type="none">
                         <li class="col-md-4" >
-                            <input id="male" type="radio" name="gender" value="local">
+                            <input id="male" type="radio" name="cuisine" value="local">
                             <label class="w3-validate">Local</label>
                         </li>
                         <li class="col-md-4">
-                            <input id="female" type="radio" name="gender" value="continental">
+                            <input id="female" type="radio" name="cuisine" value="continental">
                             <label class="w3-validate">Continental</label>
                         </li>
                         <li class="col-md-4">
-                            <input id="unknown" type="radio" name="gender" value="multicuisine">
+                            <input id="unknown" type="radio" name="cuisine" value="multicuisine">
                             <label class="w3-validate">Multi</label>
                         </li>
                     </ul>
                 </div>
             </div>
-            <button type="submit" class="btn btn-warning btn-block">Submit</button>
+            <button type="submit" class="btn btn-warning btn-block" name="submit">Submit</button>
         </form>
     </div>
 </section>
@@ -463,5 +484,7 @@
     new WOW().init();
 </script>
 
+
 </body>
 </html>
+
