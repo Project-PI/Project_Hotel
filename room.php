@@ -248,25 +248,27 @@ if(isset($_POST['submit'])){
                 <select class="form-control" name="place">
                     <option>Select your country...</option>
                     <optgroup label="Asia">
-                        <option value="Cam">Cambodia</option>
-                        <option value="Ch">China</option>
-                        <option value="In">India</option>
-                        <option value="Jp">Japan</option>
-                        <option value="Laos">Laos</option>
-                        <option value="Mal">Malaysia</option>
-                        <option value="Myan">Myanmar</option>
-                        <option value="Phi">Philippines</option>
-                        <option value="Ru">Russia</option>
-                        <option value="Sing">Singapore</option>
-                        <option value="kr">South Korea</option>
-                        <option value="Th">Thailand</option>
-                        <option value="Vn">Vietnam</option>
+                        <option value="KH">Cambodia</option>
+                        <option value="CN">China</option>
+                        <option value="IN">India</option>
+                        <option value="JP">Japan</option>
+                        <option value="LA">Laos</option>
+                        <option value="MY">Malaysia</option>
+                        <option value="MM">Myanmar</option>
+                        <option value="PH">Philippines</option>
+                        <option value="RU">Russia</option>
+                        <option value="SG">Singapore</option>
+                        <option value="kR">South Korea</option>
+                        <option value="TH">Thailand</option>
+                        <option value="VN">Vietnam</option>
                     </optgroup>
                     <optgroup label="Europe">
-                        <option value="Fr">France</option>
-                        <option value="Germ">Germany</option>
-                        <option value="Belg">Belgium</option>
-                        <option value="Spain">Spain</option>
+                        <option value="US">United States of America</option>
+                        <option value="BE">Belgium</option>
+                        <option value="EN">Englind</option>
+                        <option value="FR">France</option>
+                        <option value="GE">Germany</option>
+                        <option value="SP">Spain</option>
                     </optgroup>
                 </select>
             </div>
@@ -274,41 +276,46 @@ if(isset($_POST['submit'])){
                 <label for="selectYourPlace">No. of Adults</label>
                 <select type="text" class="form-control" name="adult">
                     <option></option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
                 </select>
             </div>
             <div class="form-group has-warning wow slideInLeft">
                 <label for="selectYourPlace">No. of Children</label>
                 <select type="text" class="form-control" name="children">
                     <option></option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
                 </select>
             </div>
             <div class="form-group has-warning wow slideInRight">
                 <label for="selectYourPlace">Suite</label>
                 <select class="form-control" name="suite">
-                    <option value="1"></option>
-                    <option value="1">Single Room</option>
-                    <option value="2">Premium Single Room</option>
-                    <option value="2">Double Room</option>
-                    <option value="2">Premium Double Room</option>
-                    <option value="3">Deluxe Suite</option>
-                    <option value="4">Executive Suite</option>
-                    <option value="4">Ocean View Suite</option>
-                    <option value="4">Presidential Suite</option>
-                    <option value="3">The Penthouse</option>
+                    <option></option>
+                    <option value="Single Room">Single Room</option>
+                    <option value="Premium Single Room">Premium Single Room</option>
+                    <option value="Double Room">Double Room</option>
+                    <option value="Premium Double Room">Premium Double Room</option>
+                    <option value="Deluxe Suite">Deluxe Suite</option>
+                    <option value="Executive Suite">Executive Suite</option>
+                    <option value="Ocean View Suite">Ocean View Suite</option>
+                    <option value="Presidential Suite">Presidential Suite</option>
+                    <option value="The Penthouse">The Penthouse</option>
                 </select>
             </div>
             <div class="row">
