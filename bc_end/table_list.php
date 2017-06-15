@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -161,119 +162,70 @@
                                 <h4 class="title">Simple Table</h4>
                                 <p class="category">Here is a subtitle for this table</p>
                             </div>
+                            <form method="post" action="table_list.php">
                             <div class="card-content table-responsive">
                                 <table class="table">
-                                    <thead class="text-primary">
-                                    <th>Name</th>
-                                    <th>Country</th>
-                                    <th>City</th>
-                                    <th>Salary</th>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>Dakota Rice</td>
-                                        <td>Niger</td>
-                                        <td>Oud-Turnhout</td>
-                                        <td class="text-primary">$36,738</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Minerva Hooper</td>
-                                        <td>Curaçao</td>
-                                        <td>Sinaai-Waas</td>
-                                        <td class="text-primary">$23,789</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Sage Rodriguez</td>
-                                        <td>Netherlands</td>
-                                        <td>Baileux</td>
-                                        <td class="text-primary">$56,142</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Philip Chaney</td>
-                                        <td>Korea, South</td>
-                                        <td>Overland Park</td>
-                                        <td class="text-primary">$38,735</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Doris Greene</td>
-                                        <td>Malawi</td>
-                                        <td>Feldkirchen in Kärnten</td>
-                                        <td class="text-primary">$63,542</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mason Porter</td>
-                                        <td>Chile</td>
-                                        <td>Gloucester</td>
-                                        <td class="text-primary">$78,615</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-12">
-                        <div class="card card-plain">
-                            <div class="card-header" data-background-color="purple">
-                                <h4 class="title">Table on Plain Background</h4>
-                                <p class="category">Here is a subtitle for this table</p>
-                            </div>
-                            <div class="card-content table-responsive">
-                                <table class="table table-hover">
                                     <thead>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Salary</th>
-                                    <th>Country</th>
-                                    <th>City</th>
+                                    <th>Place</th>
+                                    <th>Adult</th>
+                                    <th>Children</th>
+                                    <th>Suite</th>
+                                    <th>Number of Room</th>
+                                    <th>From Date</th>
+                                    <th>To Date</th>
+                                    <th>Cuisine</th>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Dakota Rice</td>
-                                        <td>$36,738</td>
-                                        <td>Niger</td>
-                                        <td>Oud-Turnhout</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Minerva Hooper</td>
-                                        <td>$23,789</td>
-                                        <td>Curaçao</td>
-                                        <td>Sinaai-Waas</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Sage Rodriguez</td>
-                                        <td>$56,142</td>
-                                        <td>Netherlands</td>
-                                        <td>Baileux</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>Philip Chaney</td>
-                                        <td>$38,735</td>
-                                        <td>Korea, South</td>
-                                        <td>Overland Park</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>Doris Greene</td>
-                                        <td>$63,542</td>
-                                        <td>Malawi</td>
-                                        <td>Feldkirchen in Kärnten</td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td>Mason Porter</td>
-                                        <td>$78,615</td>
-                                        <td>Chile</td>
-                                        <td>Gloucester</td>
-                                    </tr>
+                                   <?php
+                                   require_once ('../dbconf.php');
+                                   $results_per_page = 10;
+                                   $sql = "select * from booking";
+                                   $result = $conn->query($sql);
+                                   $number_of_results = mysqli_num_rows($result);
+
+                                   $number_of_pages = ceil($number_of_results/$results_per_page);
+
+                                   if(!isset($_GET['page'])){
+                                       $page = 1;
+                                   }else{
+                                       $page = $_GET['page'];
+                                   }
+
+                                   $this_page_first_result = ($page-1)*$results_per_page;
+
+                                   $sql =' select * from booking LIMIT '.$this_page_first_result.','.$results_per_page;
+                                   $result=$conn->query($sql);
+                                    while ($row=$result->fetch_assoc()){
+
+                                        ?>
+                                        <tr >
+                                            <td><?php echo $row['place']; ?></td>
+                                            <td><?php echo $row['adult']; ?></td>
+                                            <td><?php echo $row['children']; ?></td>
+                                            <td><?php echo $row['suite']; ?></td>
+                                            <td><?php echo $row['no']; ?></td>
+                                            <td><?php echo $row['from_date']; ?></td>
+                                            <td><?php echo $row['to_date']; ?></td>
+                                            <td><?php echo $row['cuisine']; ?></td>
+                                        </tr >
+                                        <?php
+                                    }
+
+
+                                    ?>
                                     </tbody>
                                 </table>
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination justify-content-center">
+                                <?php
+                                for($page=1; $page<=$number_of_pages;$page++){
+                                echo '<li class=\"page-item\"><a class=\"page-link\" href="table_list.php?page='.$page.'">'.$page.'</a></li>';
+                                }
+                                ?>
+                                    </ul>
+                                </nav>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>
