@@ -9,7 +9,7 @@ session_destroy();
 <head>
   <meta charset="UTF-8">
   <title>Error</title>
-  <?php include 'process/css/css.html'; ?>
+    <link rel="stylesheet" href="process/css/style.css">
 </head>
 
 <body>

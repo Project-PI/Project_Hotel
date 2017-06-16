@@ -45,7 +45,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
 <html>
 <head>
   <title>Reset Your Password</title>
-  <?php include 'process/css/css.html'; ?>
+    <link rel="stylesheet" href="process/css/style.css">
 </head>
 
 <body>
