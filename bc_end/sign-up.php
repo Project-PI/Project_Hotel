@@ -14,7 +14,19 @@ else {
     $email = $_SESSION['email'];
     $active = $_SESSION['active'];
 }
+if ($_SERVER['REQUEST_METHOD'] == 'POST')
+{
+
+    if (isset($_POST['register'])) { //user registering
+
+        require 'register.php';
+
+    }
+}
 ?>
+
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -48,9 +60,9 @@ else {
 <div class="wrapper">
     <div class="sidebar" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
         <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
-        Tip 2: you can also add an image using data-image tag
+            Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
 
+            Tip 2: you can also add an image using data-image tag
         -->
 
         <div class="logo">
@@ -58,7 +70,6 @@ else {
                 Front-end
             </a>
         </div>
-
 
         <div class="sidebar-wrapper">
             <ul class="nav">
@@ -74,21 +85,22 @@ else {
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="table_list.php">
                         <i class="material-icons">content_paste</i>
                         <p>Table List</p>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="sign-up.php">
                         <i class="material-icons">library_books</i>
                         <p>Sign up</p>
                     </a>
                 </li>
+                
                 <li class="active-pro">
-                    <a href="upgrade.html">
-                        <i class="material-icons">unarchive</i>
+                    <a href="logout.php">
+                        <i class="material-icons" name="logout">Sign out</i>
                         <p>Log out</p>
                     </a>
                 </li>
@@ -97,81 +109,59 @@ else {
     </div>
 
     <div class="main-panel">
+
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-8">
                         <div class="card">
                             <div class="card-header" data-background-color="purple">
-                                <h4 class="title">Simple Table</h4>
-                                <p class="category">Here is a subtitle for this table</p>
+                                <h4 class="title">Register Profile</h4>
+                                <p class="category">Complete your profile</p>
                             </div>
-                            <form method="post" action="table_list.php">
-                            <div class="card-content table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <th>ID</th>
-                                        <th>Place</th>
-                                        <th>Adult</th>
-                                        <th>Children</th>
-                                        <th>Suite</th>
-                                        <th>Number of Room</th>
-                                        <th>From Date</th>
-                                        <th>To Date</th>
-                                        <th>Cuisine</th>
-                                    </thead>
-                                    <tbody>
-                                   <?php
-                                   require_once ('../dbconf.php');
-                                   $results_per_page = 10;
-                                   $sql = "select * from booking";
-                                   $result = $conn->query($sql);
-                                   $number_of_results = mysqli_num_rows($result);
+                            <div class="card-content">
+                                <form action="sign-up.php" method="post" autocomplete="off" >
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Company (disabled)</label>
+                                                <input type="text" class="form-control" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Fist Name</label>
+                                                <input type="text" class="form-control" required autocomplete="off" name="firstname">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Last Name</label>
+                                                <input type="text" class="form-control" required autocomplete="off" name="lastname">
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                   $number_of_pages = ceil($number_of_results/$results_per_page);
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Password</label>
+                                                <input type="password" class="form-control" required autocomplete="off" name="password">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
 
-                                   if(!isset($_GET['page'])){
-                                       $page = 1;
-                                   }else{
-                                       $page = $_GET['page'];
-                                   }
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Email address</label>
+                                                <input type="email" class="form-control" required autocomplete="off" name="email">
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                   $this_page_first_result = ($page-1)*$results_per_page;
-
-                                   $sql =' select * from booking LIMIT '.$this_page_first_result.','.$results_per_page;
-                                   $result=$conn->query($sql);
-                                    while ($row=$result->fetch_assoc()){
-
-                                        ?>
-                                        <tr >
-                                            <td><?php echo $row['id']; ?></td>
-                                            <td><?php echo $row['place']; ?></td>
-                                            <td><?php echo $row['adult']; ?></td>
-                                            <td><?php echo $row['children']; ?></td>
-                                            <td><?php echo $row['suite']; ?></td>
-                                            <td><?php echo $row['no']; ?></td>
-                                            <td><?php echo $row['from_date']; ?></td>
-                                            <td><?php echo $row['to_date']; ?></td>
-                                            <td><?php echo $row['cuisine']; ?></td>
-                                        </tr >
-                                        <?php
-                                    }
-
-
-                                    ?>
-                                    </tbody>
-                                </table>
-                                <nav aria-label="Page navigation example">
-                                    <ul class="pagination justify-content-center">
-                                <?php
-                                for($page=1; $page<=$number_of_pages;$page++){
-                                echo '<li class=\"page-item\"><a class=\"page-link\" href="table_list.php?page='.$page.'">'.$page.'</a></li>';
-                                }
-                                ?>
-                                    </ul>
-                                </nav>
+                                    <button type="submit" class="btn btn-primary pull-right" name="register">Register Profile</button>
+                                    <div class="clearfix"></div>
+                                </form>
                             </div>
-                            </form>
                         </div>
                     </div>
                 </div>
