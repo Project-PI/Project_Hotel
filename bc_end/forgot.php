@@ -7,69 +7,78 @@ session_start();
 if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) 
 {   
     $email = $mysqli->escape_string($_POST['email']);
-    $result = $mysqli->query("SELECT * FROM users WHERE email='$email'");
+    $result = $mysqli->query("SELECT * FROM user_admin WHERE email='$email'");
 
-    if ( $result->num_rows == 0 ) // User doesn't exist
-    { 
+    if ( $result->num_rows == 0 ) {// User doesn't exist
         $_SESSION['message'] = "User with that email doesn't exist!";
         header("location: error.php");
     }
     else { // User exists (num_rows != 0)
 
         $user = $result->fetch_assoc(); // $user becomes array with user data
-        
         $email = $user['email'];
-        $hash = $user['hash'];
-        $first_name = $user['first_name'];
+        if ( $_POST['newpassword'] == $_POST['confirmpassword'] ) {
 
-        // Session message to display on success.php
-        $_SESSION['message'] = "<p>Please check your email <span>$email</span>"
-        . " for a confirmation link to complete your password reset!</p>";
+            $new_password = password_hash($_POST['newpassword'], PASSWORD_BCRYPT);
 
-        // Send registration confirmation link (reset.php)
-        $to      = $email;
-        $subject = 'Password Reset Link ( clevertechie.com )';
-        $message_body = '
-        Hello '.$first_name.',
+            // We get $_POST['email'] and $_POST['hash'] from the hidden input field of reset.php form
+//            $email = $mysqli->escape_string($_POST['email']);
 
-        You have requested password reset!
+            $sql = "UPDATE user_admin SET password ='$new_password' WHERE email='$email'";
 
-        Please click this link to reset your password:
+            if ( $mysqli->query($sql) ) {
 
-        http://localhost/login-system/reset.php?email='.$email.'&hash='.$hash;  
+                $_SESSION['message'] = "Your password has been reset successfully!";
+                header("location: success.php");
 
-        mail($to, $subject, $message_body);
+            }
 
-        header("location: success.php");
-  }
+        }
+        else {
+            $_SESSION['message'] = "Two passwords you entered don't match, try again!";
+            header("location: error.php");
+        }
+    }
 }
 ?>
 <!DOCTYPE html>
 <html>
 <head>
   <title>Reset Your Password</title>
-  <?php include 'css/css.html'; ?>
+  <?php include 'process/css/css.html'; ?>
 </head>
 
 <body>
     
   <div class="form">
 
-    <h1>Reset Your Password</h1>
+        <h1>Reset Your Password</h1>
 
-    <form action="forgot.php" method="post">
-     <div class="field-wrap">
-      <label>
-        Email Address<span class="req">*</span>
-      </label>
-      <input type="email"required autocomplete="off" name="email"/>
-    </div>
-    <button class="button button-block"/>Reset</button>
-    </form>
+        <form action="forgot.php" method="post">
+             <div class="field-wrap">
+                 <label>
+                     Email Address<span class="req">*</span>
+                 </label>
+                 <input type="email"required autocomplete="off" name="email"/>
+            </div>
+            <div class="field-wrap">
+                <label>
+                    New Password<span class="req">*</span>
+                </label>
+                <input type="password"required name="newpassword" autocomplete="off"/>
+            </div>
+            <div class="field-wrap">
+                <label>
+                    Confirm New Password<span class="req">*</span>
+                </label>
+                <input type="password"required name="confirmpassword" autocomplete="off"/>
+            </div>
+
+            <!-- This input field is needed, to get the email of the user -->
+            <button class="button button-block"/>Reset</button>
+        </form>
   </div>
-          
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src="process/js/index.js"></script>
 </body>
-
 </html>

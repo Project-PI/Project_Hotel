@@ -6,7 +6,7 @@ session_start();
 <html>
 <head>
   <title>Success</title>
-  <?php include 'css/css.html'; ?>
+  <?php include 'process/css/css.html'; ?>
 </head>
 <body>
 <div class="form">
@@ -16,7 +16,7 @@ session_start();
     if( isset($_SESSION['message']) AND !empty($_SESSION['message']) ):
         echo $_SESSION['message'];    
     else:
-        header( "location: index.php" );
+        header( "location: sign-up.php" );
     endif;
     ?>
     </p>

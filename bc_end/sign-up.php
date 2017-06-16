@@ -97,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                 
                 <li class="active-pro">
                     <a href="logout.php">
-                        <i class="material-icons" name="logout">Sign out</i>
+                        <i class="material-icons" name="logout">unarchive</i>
                         <p>Log out</p>
                     </a>
                 </li>
@@ -106,7 +106,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     </div>
 
     <div class="main-panel">
-
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -121,20 +120,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                                     <div class="row">
                                         <div class="col-md-5">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Company (disabled)</label>
-                                                <input type="text" class="form-control" disabled>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group label-floating">
                                                 <label class="control-label">Fist Name</label>
                                                 <input type="text" class="form-control" required autocomplete="off" name="firstname">
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-5">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Last Name</label>
                                                 <input type="text" class="form-control" required autocomplete="off" name="lastname">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Sex</label>
+                                                <select name="sex" class="form-control" type="text">
+                                                    <option value=""></option>
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -147,10 +150,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Email address</label>
                                                 <input type="email" class="form-control" required autocomplete="off" name="email">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>About Me</label>
+                                                <div class="form-group label-floating">
+                                                    <textarea class="form-control" rows="5"  name="about_me"></textarea>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

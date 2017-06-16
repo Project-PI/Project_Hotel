@@ -11,12 +11,14 @@ $_SESSION['last_name'] = $_POST['lastname'];
 // Escape all $_POST variables to protect against SQL injections
 $first_name = $mysqli->escape_string($_POST['firstname']);
 $last_name = $mysqli->escape_string($_POST['lastname']);
+$sex = $mysqli->escape_string($_POST['sex']);
 $email = $mysqli->escape_string($_POST['email']);
+$about = $mysqli->escape_string($_POST['about_me']);
 $password = $mysqli->escape_string(password_hash($_POST['password'], PASSWORD_BCRYPT));
 $hash = $mysqli->escape_string( md5( rand(0,1000) ) );
       
 // Check if user with that email already exists
-$result = $mysqli->query("SELECT * FROM users WHERE email='$email'") or die($mysqli->error());
+$result = $mysqli->query("SELECT * FROM user_admin WHERE email='$email'") or die($mysqli->error());
 
 // We know user email exists if the rows returned are more than 0
 if ( $result->num_rows > 0 ) {
@@ -28,16 +30,16 @@ if ( $result->num_rows > 0 ) {
 else { // Email doesn't already exist in a database, proceed...
 
     // active is 0 by DEFAULT (no need to include it here)
-    $sql = "INSERT INTO users (first_name, last_name, email, password, hash) " 
-            . "VALUES ('$first_name','$last_name','$email','$password', '$hash')";
+    $sql = "INSERT INTO user_admin (first_name, last_name, sex, password, email, about_me, hash)".
+        " VALUES ('$first_name','$last_name', '$sex', '$password', '$email', '$about', '$hash')";
 
-    // Add user to the database
+     //Add user to the database
     if ( $mysqli->query($sql) ){
 
         $_SESSION['active'] = 0; //0 until user activates their account with verify.php
         $_SESSION['logged_in'] = true; // So we know the user has logged in
         $_SESSION['message'] =
-                
+
                  "Confirmation link has been sent to $email, please verify
                  your account by clicking on the link in the message!";
 
@@ -51,12 +53,11 @@ else { // Email doesn't already exist in a database, proceed...
 
         Please click this link to activate your account:
 
-        http://localhost/login-system/verify.php?email='.$email.'&hash='.$hash;  
+        http://localhost/login-system/verify.php?email='.$email.'&hash='.$hash;
 
         mail( $to, $subject, $message_body );
 
-        header("location: sign-up.php");
-
+        header("location: success.php");
     }
 
     else {
