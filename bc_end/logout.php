@@ -9,7 +9,7 @@ session_destroy();
 <head>
   <meta charset="UTF-8">
   <title>Error</title>
-    <link rel="stylesheet" href="process/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>

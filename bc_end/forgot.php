@@ -45,7 +45,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
 <html>
 <head>
   <title>Reset Your Password</title>
-    <link rel="stylesheet" href="process/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
@@ -79,6 +79,6 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
         </form>
   </div>
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-<script src="process/js/index.js"></script>
+<script src="assets/js/index.js"></script>
 </body>
 </html>

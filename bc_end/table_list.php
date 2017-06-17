@@ -15,7 +15,7 @@ else {
     $active = $_SESSION['active'];
 }
 ?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -41,18 +41,42 @@ else {
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="assets/DataTables/media/css/dataTables.bootstrap.css">
+    <link rel="stylesheet" href="assets/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
+    <!--   Core JS Files   -->
+    <script src="assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+    <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="assets/js/material.min.js" type="text/javascript"></script>
+
+    <!--  Charts Plugin -->
+    <script src="assets/js/chartist.min.js"></script>
+
+    <!--  Notifications Plugin    -->
+    <script src="assets/js/bootstrap-notify.js"></script>
+
+    <!--  Google Maps Plugin    -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+
+    <!-- Material Dashboard javascript methods -->
+    <script src="assets/js/material-dashboard.js"></script>
+
+    <!-- Material Dashboard DEMO methods, don't include it in your project! -->
+    <script src="assets/js/demo.js"></script>
+
+    <script src="assets/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
+    <script src="assets/DataTables/media/js/jquery.dataTables.js"></script>
 </head>
 
 <body>
 
 <div class="wrapper">
-    <div class="sidebar" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
+    <div class="sidebar" data-color="purple" data-image="assets/img/sidebar-1.jpg">
         <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
         Tip 2: you can also add an image using data-image tag
 
         -->
-
         <div class="logo">
             <a href="../index.php" class="simple-text">
                 Front-end
@@ -101,14 +125,27 @@ else {
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
+                        <div class="input-daterange">
+                            <div class="col-md-4">
+                                <input type="text" name="start_date" id="start_date" class="form-control">
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" name="end_date" id="end_date" class="form-control">
+                            </div>
+                            <div class="col-md-4">
+<!--                                <input type="button" name="search" id="search" value="Search" class="btn btn-info">-->
+                                <button name="search" id="search"  class="btn btn-info">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
                         <div class="card">
                             <div class="card-header" data-background-color="purple">
                                 <h4 class="title">Simple Table</h4>
                                 <p class="category">Here is a subtitle for this table</p>
                             </div>
-                            <form method="post" action="table_list.php">
                             <div class="card-content table-responsive">
-                                <table class="table">
+                                <table class="table table-striped table-hover" id="table_data">
                                     <thead>
                                         <th>ID</th>
                                         <th>Place</th>
@@ -120,58 +157,8 @@ else {
                                         <th>To Date</th>
                                         <th>Cuisine</th>
                                     </thead>
-                                    <tbody>
-                                   <?php
-                                   require_once ('../dbconf.php');
-                                   $results_per_page = 10;
-                                   $sql = "select * from booking";
-                                   $result = $conn->query($sql);
-                                   $number_of_results = mysqli_num_rows($result);
-
-                                   $number_of_pages = ceil($number_of_results/$results_per_page);
-
-                                   if(!isset($_GET['page'])){
-                                       $page = 1;
-                                   }else{
-                                       $page = $_GET['page'];
-                                   }
-
-                                   $this_page_first_result = ($page-1)*$results_per_page;
-
-                                   $sql =' select * from booking LIMIT '.$this_page_first_result.','.$results_per_page;
-                                   $result=$conn->query($sql);
-                                    while ($row=$result->fetch_assoc()){
-
-                                        ?>
-                                        <tr >
-                                            <td><?php echo $row['id']; ?></td>
-                                            <td><?php echo $row['place']; ?></td>
-                                            <td><?php echo $row['adult']; ?></td>
-                                            <td><?php echo $row['children']; ?></td>
-                                            <td><?php echo $row['suite']; ?></td>
-                                            <td><?php echo $row['no']; ?></td>
-                                            <td><?php echo $row['from_date']; ?></td>
-                                            <td><?php echo $row['to_date']; ?></td>
-                                            <td><?php echo $row['cuisine']; ?></td>
-                                        </tr >
-                                        <?php
-                                    }
-
-
-                                    ?>
-                                    </tbody>
-                                </table>
-                                <nav aria-label="Page navigation example">
-                                    <ul class="pagination justify-content-center">
-                                <?php
-                                for($page=1; $page<=$number_of_pages;$page++){
-                                echo '<li class=\"page-item\"><a class=\"page-link\" href="table_list.php?page='.$page.'">'.$page.'</a></li>';
-                                }
-                                ?>
-                                    </ul>
-                                </nav>
+                                    </table>
                             </div>
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -212,26 +199,48 @@ else {
     </div>
 </div>
 
+<script type="text/javascript" language="javascript" >
+    $(document).ready(function(){
+
+        $('.input-daterange').datepicker({
+            todayBtn:'linked',
+            format: "yyyy-mm-dd",
+            autoclose: true
+        });
+        fetch_data('no');
+
+        function fetch_data(is_date_search, start_date='', end_date='')
+        {
+            var dataTable = $('#table_data').DataTable({
+                "processing" : true,
+                "serverSide" : true,
+                "order" : [],
+                "ajax" : {
+                    url:"files/fetch.php",
+                    type:"POST",
+                    data:{
+                        is_date_search:is_date_search, start_date:start_date, end_date:end_date
+                    }
+                }
+            });
+        }
+
+        $('#search').click(function(){
+            var start_date = $('#start_date').val();
+            var end_date = $('#end_date').val();
+            if(start_date != '' && end_date !='')
+            {
+                $('#table_data').DataTable().destroy();
+                fetch_data('yes', start_date, end_date);
+            }
+            else
+            {
+                alert("Both Date is Required");
+            }
+        });
+
+    });
+</script>
+
 </body>
-
-<!--   Core JS Files   -->
-<script src="assets/js/jquery-3.1.0.min.js" type="text/javascript"></script>
-<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="assets/js/material.min.js" type="text/javascript"></script>
-
-<!--  Charts Plugin -->
-<script src="assets/js/chartist.min.js"></script>
-
-<!--  Notifications Plugin    -->
-<script src="assets/js/bootstrap-notify.js"></script>
-
-<!--  Google Maps Plugin    -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
-
-<!-- Material Dashboard javascript methods -->
-<script src="assets/js/material-dashboard.js"></script>
-
-<!-- Material Dashboard DEMO methods, don't include it in your project! -->
-<script src="assets/js/demo.js"></script>
-
 </html>
