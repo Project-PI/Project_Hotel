@@ -1,21 +1,4 @@
-<?php
-/* Displays user information and some useful messages */
-session_start();
-
-// Check if user is logged in using the session variable
-if ( $_SESSION['logged_in'] != 1 ) {
-    $_SESSION['message'] = "You must log in before viewing your profile page!";
-    header("location: error.php");
-}
-else {
-    // Makes it easier to read
-    $first_name = $_SESSION['first_name'];
-    $last_name = $_SESSION['last_name'];
-    $email = $_SESSION['email'];
-    $active = $_SESSION['active'];
-}
-?>
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -36,50 +19,35 @@ else {
     <link href="assets/css/material-dashboard.css" rel="stylesheet"/>
 
     <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="assets/css/demo.css" rel="stylesheet" />
+<!--    <link href="assets/css/demo.css" rel="stylesheet" />-->
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>-->
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />-->
+<!--    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>-->
+<!--    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">-->
 
+
+    <script src="source/jquery.min.js"></script>
+    <link rel="stylesheet" href="source/bootstrap.min.css" />
+    <link rel="stylesheet" href="source/jquery-ui.css">
+    <script src="source/jquery-ui.js"></script>
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
-
-    <link rel="stylesheet" href="assets/DataTables/media/css/dataTables.bootstrap.css">
-    <link rel="stylesheet" href="assets/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
-    <!--   Core JS Files   -->
-    <script src="assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
-    <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="assets/js/material.min.js" type="text/javascript"></script>
-
-    <!--  Charts Plugin -->
-    <script src="assets/js/chartist.min.js"></script>
-
-    <!--  Notifications Plugin    -->
-    <script src="assets/js/bootstrap-notify.js"></script>
-
-    <!--  Google Maps Plugin    -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
-
-    <!-- Material Dashboard javascript methods -->
-    <script src="assets/js/material-dashboard.js"></script>
-
-    <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-    <script src="assets/js/demo.js"></script>
-
-    <script src="assets/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
-    <script src="assets/DataTables/media/js/jquery.dataTables.js"></script>
 </head>
 
 <body>
 
 <div class="wrapper">
-    <div class="sidebar" data-color="purple" data-image="assets/img/sidebar-1.jpg">
+    <div class="sidebar" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
         <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
         Tip 2: you can also add an image using data-image tag
 
         -->
+
         <div class="logo">
-            <a href="../index.php" class="simple-text">
-                Front-end
+            <a href="http://www.creative-tim.com" class="simple-text">
+                Creative Tim
             </a>
         </div>
 
@@ -87,15 +55,15 @@ else {
         <div class="sidebar-wrapper">
             <ul class="nav">
                 <li>
-                    <a href="user.php">
-                        <i class="material-icons">person</i>
-                        <p>User Profile</p>
-                    </a>
-                </li>
-                <li>
                     <a href="info.php">
                         <i class="material-icons">dashboard</i>
                         <p>Dashboard</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="user.php">
+                        <i class="material-icons">person</i>
+                        <p>User Profile</p>
                     </a>
                 </li>
                 <li class="active">
@@ -105,15 +73,33 @@ else {
                     </a>
                 </li>
                 <li>
-                    <a href="sign-up.php">
+                    <a href="typography.html">
                         <i class="material-icons">library_books</i>
-                        <p>Sign up</p>
+                        <p>Typography</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="icons.html">
+                        <i class="material-icons">bubble_chart</i>
+                        <p>Icons</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="maps.html">
+                        <i class="material-icons">location_on</i>
+                        <p>Maps</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="notifications.html">
+                        <i class="material-icons text-gray">notifications</i>
+                        <p>Notifications</p>
                     </a>
                 </li>
                 <li class="active-pro">
                     <a href="upgrade.html">
                         <i class="material-icons">unarchive</i>
-                        <p>Log out</p>
+                        <p>Upgrade to PRO</p>
                     </a>
                 </li>
             </ul>
@@ -121,33 +107,85 @@ else {
     </div>
 
     <div class="main-panel">
+        <nav class="navbar navbar-transparent navbar-absolute">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Table List</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="material-icons">dashboard</i>
+                                <p class="hidden-lg hidden-md">Dashboard</p>
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="material-icons">notifications</i>
+                                <span class="notification">5</span>
+                                <p class="hidden-lg hidden-md">Notifications</p>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Mike John responded to your email</a></li>
+                                <li><a href="#">You have 5 new tasks</a></li>
+                                <li><a href="#">You're now friend with Andrew</a></li>
+                                <li><a href="#">Another Notification</a></li>
+                                <li><a href="#">Another One</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="material-icons">person</i>
+                                <p class="hidden-lg hidden-md">Profile</p>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <form class="navbar-form navbar-right" role="search">
+                        <div class="form-group  is-empty">
+                            <input type="text" class="form-control" placeholder="Search">
+                            <span class="material-input"></span>
+                        </div>
+                        <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                            <i class="material-icons">search</i><div class="ripple-container"></div>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="input-daterange">
-                            <div class="col-md-4">
-                                <input type="text" name="start_date" id="start_date" class="form-control">
-                            </div>
-                            <div class="col-md-4">
-                                <input type="text" name="end_date" id="end_date" class="form-control">
-                            </div>
-                            <div class="col-md-4">
-<!--                                <input type="button" name="search" id="search" value="Search" class="btn btn-info">-->
-                                <button name="search" id="search"  class="btn btn-info">Search</button>
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header" data-background-color="purple">
                                 <h4 class="title">Simple Table</h4>
                                 <p class="category">Here is a subtitle for this table</p>
                             </div>
-                            <div class="card-content table-responsive">
-                                <table class="table table-striped table-hover" id="table_data">
-                                    <thead>
-                                        <th>ID</th>
+
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <input type="text" name="from_date" id="from_date" class="form-control" placeholder="From Date" />
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" name="to_date" id="to_date" class="form-control" placeholder="To Date" />
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="button" name="filter" id="filter" value="Filter" class="btn btn-info" />
+                                </div>
+                            </div>
+                            <form method="post" action="table_list.php">
+                                <div class="card-content table-responsive">
+                                    <table class="table" id="order_table">
+                                        <thead>
                                         <th>Place</th>
                                         <th>Adult</th>
                                         <th>Children</th>
@@ -156,9 +194,67 @@ else {
                                         <th>From Date</th>
                                         <th>To Date</th>
                                         <th>Cuisine</th>
-                                    </thead>
+                                        </thead>
+                                        <tbody>
+                                        <?php
+                                        require_once ('../dbconf.php');
+                                        $results_per_page = 10;
+                                        $sql = "select * from booking";
+                                        $result = $conn->query($sql);
+                                        $number_of_results = mysqli_num_rows($result);
+
+                                        $number_of_pages = ceil($number_of_results/$results_per_page);
+
+                                        if(!isset($_GET['page'])){
+                                            $page = 1;
+                                        }else{
+                                            $page = $_GET['page'];
+                                        }
+
+                                        $this_page_first_result = ($page-1)*$results_per_page;
+
+                                        $sql =' select * from booking LIMIT '.$this_page_first_result.','.$results_per_page;
+                                        $result=$conn->query($sql);
+                                        while ($row=$result->fetch_assoc()){
+
+                                            ?>
+                                            <tr >
+                                                <td><?php echo $row['place']; ?></td>
+                                                <td><?php echo $row['adult']; ?></td>
+                                                <td><?php echo $row['children']; ?></td>
+                                                <td><?php echo $row['suite']; ?></td>
+                                                <td><?php echo $row['no']; ?></td>
+                                                <td><?php echo $row['from_date']; ?></td>
+                                                <td><?php echo $row['to_date']; ?></td>
+                                                <td><?php echo $row['cuisine']; ?></td>
+                                            </tr >
+                                            <?php
+                                        }
+
+
+                                        ?>
+                                        </tbody>
                                     </table>
-                            </div>
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination justify-content-center">
+                                            <?php
+                                            if($page > 1) {
+                                                echo '<li class=\"page-item\"><a class=\"page-link\" href="table_list.php?page='.($page-1).'">Previous</a></li>';
+                                            }
+                                            if($page<=$number_of_pages) {
+                                                echo '<li class=\"page-item\"><a class=\"page-link\" href="table_list.php?page='.($page+1).'">Next</a></li>';
+                                            }
+                                            for($page=1; $page<=$number_of_pages;$page++){
+
+                                                echo '<li class=\"page-item\"><a class=\"page-link\" href="table_list.php?page='.$page.'">'.$page.'</a></li>';
+
+                                            }
+
+                                            ?>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -199,48 +295,61 @@ else {
     </div>
 </div>
 
-<script type="text/javascript" language="javascript" >
+</body>
+
+<!--<script src="jquery.min.js"></script>-->
+
+<!--   Core JS Files   -->
+<script src="assets/js/jquery-3.1.0.min.js" type="text/javascript"></script>
+<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="assets/js/material.min.js" type="text/javascript"></script>
+
+<!--  Charts Plugin -->
+<script src="assets/js/chartist.min.js"></script>
+
+<!--  Notifications Plugin    -->
+<script src="assets/js/bootstrap-notify.js"></script>
+
+<!--  Google Maps Plugin    -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+
+<!-- Material Dashboard javascript methods -->
+<script src="assets/js/material-dashboard.js"></script>
+
+<!-- Material Dashboard DEMO methods, don't include it in your project! -->
+<script src="assets/js/demo.js"></script>
+
+
+<script>
     $(document).ready(function(){
-
-        $('.input-daterange').datepicker({
-            todayBtn:'linked',
-            format: "yyyy-mm-dd",
-            autoclose: true
+        $.datepicker.setDefaults({
+            dateFormat: 'yy-mm-dd'
         });
-        fetch_data('no');
-
-        function fetch_data(is_date_search, start_date='', end_date='')
-        {
-            var dataTable = $('#table_data').DataTable({
-                "processing" : true,
-                "serverSide" : true,
-                "order" : [],
-                "ajax" : {
-                    url:"files/fetch.php",
-                    type:"POST",
-                    data:{
-                        is_date_search:is_date_search, start_date:start_date, end_date:end_date
-                    }
-                }
-            });
-        }
-
-        $('#search').click(function(){
-            var start_date = $('#start_date').val();
-            var end_date = $('#end_date').val();
-            if(start_date != '' && end_date !='')
+        $(function(){
+            $("#from_date").datepicker();
+            $("#to_date").datepicker();
+        });
+        $('#filter').click(function(){
+            var from_date = $('#from_date').val();
+            var to_date = $('#to_date').val();
+            if(from_date != '' && to_date != '')
             {
-                $('#table_data').DataTable().destroy();
-                fetch_data('yes', start_date, end_date);
+                $.ajax({
+                    url:"filter.php",
+                    method:"POST",
+                    data:{from_date:from_date, to_date:to_date},
+                    success:function(data)
+                    {
+                        $('#order_table').html(data);
+                    }
+                });
             }
             else
             {
-                alert("Both Date is Required");
+                alert("Please Select Date");
             }
         });
-
     });
 </script>
-
 </body>
 </html>
