@@ -23,6 +23,12 @@ else {
     <link rel="icon" type="image/png" href="assets/img/favicon.png" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.1/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.1/bootstrap3-editable/js/bootstrap-editable.js"></script>
+
     <title>Material Dashboard by Creative Tim</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
@@ -96,10 +102,39 @@ else {
             </ul>
         </div>
     </div>
-    
+    <div class="main-panel">
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header" data-background-color="purple">
+                                <h4 class="title">Simple Table</h4>
+                                <p class="category">Here is a subtitle for this table</p>
+                            </div>
+                            <div class="card-content table-responsive">
+                                <table class="table" id="order_table">
+                                    <thead>
+                                    <tr>
+                                        <th width="10%">id</th>
+                                        <th width="10%">first_name</th>
+                                        <th width="10%">last_name</th>
+                                        <th width="15%">email</th>
+                                        <th width="10%">phone</th>
+                                        <th width="15%">message</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="employee_data">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-</body>
 
 <!--   Core JS Files   -->
 <script src="assets/js/jquery-3.1.0.min.js" type="text/javascript"></script>
@@ -123,11 +158,98 @@ else {
 
 <script type="text/javascript">
     $(document).ready(function(){
-
         // Javascript method's body can be found in assets/js/demos.js
         demo.initDashboardPageCharts();
-
     });
 </script>
 
+<script type="text/javascript" language="javascript" >
+    $(document).ready(function(){
+
+        function fetch_employee_data()
+        {
+            $.ajax({
+                url:"fetch.php",
+                method:"POST",
+                dataType:"json",
+                success:function(data)
+                {
+                    for(var count=0; count<data.length; count++)
+                    {
+                        var html_data = '<tr><td>'+data[count].id+'</td>';
+                        html_data += '<td data-name="name" class="name" data-type="text" data-pk="'+data[count].id+'">'+data[count].name+'</td>';
+                        html_data += '<td data-name="gender" class="gender" data-type="select" data-pk="'+data[count].id+'">'+data[count].gender+'</td>';
+                        html_data += '<td data-name="designation" class="designation" data-type="text" data-pk="'+data[count].id+'">'+data[count].designation+'</td>';
+                        html_data += '<td data-name="age" class="age" data-type="text" data-pk="'+data[count].id+'">'+data[count].age+'</td></tr>';
+                        $('#employee_data').append(html_data);
+                    }
+                }
+            })
+        }
+
+        fetch_employee_data();
+
+        $('#employee_data').editable({
+            container: 'body',
+            selector: 'td.name',
+            url: "update.php",
+            title: 'Employee Name',
+            type: "POST",
+            //dataType: 'json',
+            validate: function(value){
+                if($.trim(value) == '')
+                {
+                    return 'This field is required';
+                }
+            }
+        });
+
+        $('#employee_data').editable({
+            container: 'body',
+            selector: 'td.gender',
+            url: "update.php",
+            title: 'Gender',
+            type: "POST",
+            dataType: 'json',
+            source: [{value: "Male", text: "Male"}, {value: "Female", text: "Female"}],
+            validate: function(value){
+                if($.trim(value) == '')
+                {
+                    return 'This field is required';
+                }
+            }
+        });
+
+        $('#employee_data').editable({
+            container: 'body',
+            selector: 'td.designation',
+            url: "update.php",
+            title: 'Designation',
+            type: "POST",
+            dataType: 'json',
+            validate: function(value){
+                if($.trim(value) == '')
+                {
+                    return 'This field is required';
+                }
+            }
+        });
+
+        $('#employee_data').editable({
+            container: 'body',
+            selector: 'td.age',
+            url: "update.php",
+            title: 'Age',
+            type: "POST",
+            dataType: 'json',
+            validate: function(value){
+                if($.trim(value) == '')
+                {
+                    return 'This field is required';
+                }
+            }
+        });
+    });
+</script>
+</body>
 </html>
