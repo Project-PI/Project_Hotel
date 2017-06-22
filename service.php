@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,23 +60,23 @@
     <div class="panels cl-effect-16 nav nav-tabs" id="cl-effect-16">
         <div class="panel" id="panel1">
             <p></p>
-            <p class="txt active"><a href="#Dining" data-hover="Dining" data-toggle="tab">Dining</a></p>
+            <p class="txt active"><a href="#Dining" data-hover="Dining" data-toggle="tab" id="dining_header">Dining</a></p>
             <p></p>
         </div>
         <div class="panel" id="panel2">
             <p></p>
-            <p class="txt"><a href="#spa" data-hover="Spa" data-toggle="tab">Spa</a></p>
+            <p class="txt"><a href="#spa" data-hover="Spa" data-toggle="tab" id="spa_header">Spa</a></p>
             <p></p>
         </div>
         <div class="panel" id="panel3">
             <p></p>
-            <p class="txt"><a href="#fitness" data-hover="Fitness" data-toggle="tab">Fitness</a></p>
+            <p class="txt"><a href="#fitness" data-hover="Fitness" data-toggle="tab" id="fitness_header">Fitness</a></p>
             <p></p>
         </div>
     </div>
     <div class="tab-content">
         <!-- Start First Slide -->
-        <div id="Dining" class="tab-pane fade in active">
+        <div id="dining" class="tab-pane fade in active">
             <div class="cuisines agileits Dining">
                 <!-- Container in first Slide -->
                 <div class="container">
@@ -97,115 +98,55 @@
                                 <ul id="myList" type="none">
                                     <li>
                                         <div class="l_g">
-                                            <div class="l_g_r g_r">
+                                            <?php
+                                            require_once ('dbconf.php');
+
+                                            $sql =' select * from menus';
+                                            $result=$conn->query($sql);
+                                            $n=0;
+                                            while ($row=$result->fetch_assoc()) {
+                                                if ($n % 2 == 0) {
+                                            ?>
+                                            <div class="row l_g_r g_r">
                                                 <div class="col-md-6 col-sm-6 menu-grids">
                                                     <div class="menu-text wow fadeInLeft">
                                                         <div class="menu-text-left">
-                                                            <h4>Clams & Garlic</h4>
-                                                            <h6>Cheese, tomato, mushrooms, onions.</h6>
+                                                            <h4><?php echo $row['food_name']; ?></h4>
+                                                            <h6><?php echo $row['contain']; ?></h6>
                                                         </div>
                                                         <div class="menu-text-midle">
                                                             <span class="line"></span>
                                                         </div>
                                                         <div class="menu-text-right">
-                                                            <h4>$ 50</h4>
-                                                        </div>
-                                                        <div class="clearfix"></div>
-                                                    </div>
-                                                    <div class="menu-text wow fadeInLeft">
-                                                        <div class="menu-text-left">
-                                                            <h4>Salmon Cakes</h4>
-                                                            <h6>Chicken, mozzarella cheese, onions.</h6>
-                                                        </div>
-                                                        <div class="menu-text-midle">
-                                                            <span class="line"></span>
-                                                        </div>
-                                                        <div class="menu-text-right">
-                                                            <h4>$62</h4>
-                                                        </div>
-                                                        <div class="clearfix"></div>
-                                                    </div>
-                                                    <div class="menu-text wow fadeInLeft">
-                                                        <div class="menu-text-left">
-                                                            <h4>Grilled Fish Steaks</h4>
-                                                            <h6>Tuna, Sweetcorn, Cheese.</h6>
-                                                        </div>
-                                                        <div class="menu-text-midle">
-                                                            <span class="line"></span>
-                                                        </div>
-                                                        <div class="menu-text-right">
-                                                            <h4>$25</h4>
-                                                        </div>
-                                                        <div class="clearfix"></div>
-                                                    </div>
-                                                    <div class="menu-text wow fadeInLeft">
-                                                        <div class="menu-text-left">
-                                                            <h4>Garlic Shrimp Scampy</h4>
-                                                            <h6>Pineapple, Minced Beef, Cheese.</h6>
-                                                        </div>
-                                                        <div class="menu-text-midle">
-                                                            <span class="line"></span>
-                                                        </div>
-                                                        <div class="menu-text-right">
-                                                            <h4>$30</h4>
+                                                            <h4>$ <?php echo $row['price']; ?></h4>
                                                         </div>
                                                         <div class="clearfix"></div>
                                                     </div>
                                                 </div>
+                                                        <?php
+                                                    } else {
+                                                ?>
                                                 <div class="col-md-6 col-sm-6 menu-grids">
-                                                    <div class="menu-text wow fadeInRight">
+                                                    <div class="menu-text wow fadeInLeft">
                                                         <div class="menu-text-left">
-                                                            <h4>Mussels Mariniere</h4>
-                                                            <h6>Tuna, Sweetcorn, Cheese.</h6>
+                                                            <h4><?php echo $row['food_name']; ?></h4>
+                                                            <h6><?php echo $row['contain']; ?></h6>
                                                         </div>
                                                         <div class="menu-text-midle">
                                                             <span class="line"></span>
                                                         </div>
                                                         <div class="menu-text-right">
-                                                            <h4>$50</h4>
-                                                        </div>
-                                                        <div class="clearfix"></div>
-                                                    </div>
-                                                    <div class="menu-text wow fadeInRight">
-                                                        <div class="menu-text-left">
-                                                            <h4>Rockin' Oysters</h4>
-                                                            <h6>Pineapple, Minced Beef, Cheese.</h6>
-                                                        </div>
-                                                        <div class="menu-text-midle">
-                                                            <span class="line"></span>
-                                                        </div>
-                                                        <div class="menu-text-right">
-                                                            <h4>$62</h4>
-                                                        </div>
-                                                        <div class="clearfix"></div>
-                                                    </div>
-                                                    <div class="menu-text wow fadeInRight">
-                                                        <div class="menu-text-left">
-                                                            <h4>Coconut Shrimp</h4>
-                                                            <h6>Cheese, tomato, mushrooms, onions.</h6>
-                                                        </div>
-                                                        <div class="menu-text-midle">
-                                                            <span class="line"></span>
-                                                        </div>
-                                                        <div class="menu-text-right">
-                                                            <h4>$25</h4>
-                                                        </div>
-                                                        <div class="clearfix"></div>
-                                                    </div>
-                                                    <div class="menu-text wow fadeInRight">
-                                                        <div class="menu-text-left">
-                                                            <h4>Sesame Seared Tuna</h4>
-                                                            <h6>Chicken, mozzarella cheese, onions.</h6>
-                                                        </div>
-                                                        <div class="menu-text-midle">
-                                                            <span class="line"></span>
-                                                        </div>
-                                                        <div class="menu-text-right">
-                                                            <h4>$30</h4>
+                                                            <h4>$ <?php echo $row['price']; ?></h4>
                                                         </div>
                                                         <div class="clearfix"></div>
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <?php
+                                                    }
+                                                $n++;
+                                                }
+                                                ?>
                                                 <div class="clearfix"></div>
                                             </div>
                                         </div>
@@ -220,7 +161,7 @@
         </div>
         <!-- End First Slide -->
         <!-- Start Second slide -->
-        <div id="spa" class="tab-pane fade">
+        <div id="spa" class="tab-pane fade" style="display: none">
             <h2 class="title">The Best Service</h2>
             <div class="container">
                 <div class="row">
@@ -442,8 +383,8 @@
             </div>
         </div>
 
-        <div id="fitness" class="tab-pane fade">
-            <div id="Dining" class="tab-pane fade in active">
+        <div id="fitness" class="tab-pane fade" style="display: none">
+            <div id="fitCenter" class="tab-pane fade in active">
                 <div class="cuisines agileits Dining">
                     <!-- Container in third Slide -->
                     <div class="container">
@@ -459,7 +400,7 @@
                 </div>
             </div>
             <br>
-            <div id="Dining" class="tab-pane fade in active">
+            <div id="swimming" class="tab-pane fade in active">
                 <div class="cuisines agileits Dining">
                     <!-- Container in third Slide -->
                     <div class="container">
@@ -614,6 +555,24 @@
 <script src="vendors/style/js/wow.min.js"></script>
 <script>
     new WOW().init();
+</script>
+
+<script>
+    $('#spa_header').click(function () {
+        $('#dining').css("display", "none");
+        $('#fitness').css("display", "none");
+        $('#spa').css("display", "block");
+    })
+    $('#fitness_header').click(function () {
+        $('#dining').css("display", "none");
+        $('#spa').css("display", "none");
+        $('#fitness').css("display", "block");
+    })
+    $('#dining_header').click(function () {
+        $('#spa').css("display", "none");
+        $('#fitness').css("display", "none");
+        $('#dining').css("display", "block");
+    })
 </script>
 </body>
 </html>
