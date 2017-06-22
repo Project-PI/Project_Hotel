@@ -116,12 +116,11 @@ else {
                                 <table class="table" id="order_table">
                                     <thead>
                                     <tr>
-                                        <th width="10%">id</th>
-                                        <th width="10%">first_name</th>
-                                        <th width="10%">last_name</th>
-                                        <th width="15%">email</th>
-                                        <th width="10%">phone</th>
-                                        <th width="15%">message</th>
+                                        <th width="10%">ID</th>
+                                        <th width="30%">Food Name</th>
+                                        <th width="30%">Contain</th>
+                                        <th width="15%">Price</th>
+                                        <th width="15%">Type Food</th>
                                     </tr>
                                     </thead>
                                     <tbody id="employee_data">
@@ -177,10 +176,10 @@ else {
                     for(var count=0; count<data.length; count++)
                     {
                         var html_data = '<tr><td>'+data[count].id+'</td>';
-                        html_data += '<td data-name="name" class="name" data-type="text" data-pk="'+data[count].id+'">'+data[count].name+'</td>';
-                        html_data += '<td data-name="gender" class="gender" data-type="select" data-pk="'+data[count].id+'">'+data[count].gender+'</td>';
-                        html_data += '<td data-name="designation" class="designation" data-type="text" data-pk="'+data[count].id+'">'+data[count].designation+'</td>';
-                        html_data += '<td data-name="age" class="age" data-type="text" data-pk="'+data[count].id+'">'+data[count].age+'</td></tr>';
+                        html_data += '<td data-name="food_name" class="food_name" data-type="text" data-pk="'+data[count].id+'">'+data[count].food_name+'</td>';
+                        html_data += '<td data-name="contain" class="contain" data-type="text" data-pk="'+data[count].id+'">'+data[count].contain+'</td>';
+                        html_data += '<td data-name="price" class="contain" data-type="text" data-pk="'+data[count].id+'">'+data[count].price+'</td>';
+                        html_data += '<td data-name="type_food" class="type_food" data-type="select" data-pk="'+data[count].id+'">'+data[count].type_food+'</td></tr>';
                         $('#employee_data').append(html_data);
                     }
                 }
@@ -191,40 +190,9 @@ else {
 
         $('#employee_data').editable({
             container: 'body',
-            selector: 'td.name',
+            selector: 'td.food_name',
             url: "update.php",
-            title: 'Employee Name',
-            type: "POST",
-            //dataType: 'json',
-            validate: function(value){
-                if($.trim(value) == '')
-                {
-                    return 'This field is required';
-                }
-            }
-        });
-
-        $('#employee_data').editable({
-            container: 'body',
-            selector: 'td.gender',
-            url: "update.php",
-            title: 'Gender',
-            type: "POST",
-            dataType: 'json',
-            source: [{value: "Male", text: "Male"}, {value: "Female", text: "Female"}],
-            validate: function(value){
-                if($.trim(value) == '')
-                {
-                    return 'This field is required';
-                }
-            }
-        });
-
-        $('#employee_data').editable({
-            container: 'body',
-            selector: 'td.designation',
-            url: "update.php",
-            title: 'Designation',
+            title: 'Food Name',
             type: "POST",
             dataType: 'json',
             validate: function(value){
@@ -237,11 +205,44 @@ else {
 
         $('#employee_data').editable({
             container: 'body',
-            selector: 'td.age',
+            selector: 'td.contain',
             url: "update.php",
-            title: 'Age',
+            title: 'Contain',
             type: "POST",
             dataType: 'json',
+            validate: function(value){
+                if($.trim(value) == '')
+                {
+                    return 'This field is required';
+                }
+            }
+        });
+
+        $('#employee_data').editable({
+            container: 'body',
+            selector: 'td.price',
+            url: "update.php",
+            title: 'Price',
+            type: "POST",
+            dataType: 'json',
+            validate: function(value){
+                if($.trim(value) == '')
+                {
+                    return 'This field is required';
+                }
+            }
+        });
+
+        $('#employee_data').editable({
+            container: 'body',
+            selector: 'td.type_food',
+            url: "update.php",
+            title: 'Type Food',
+            type: "POST",
+            dataType: 'json',
+            source: [{value: "mainFood", text: "mainFood"}, {value: "hotAppetizers", text: "hotAppetizers"},
+                { value: "salad&soup", text: "salad&soup"},{ value: "vegetable", text: "vegetable"},
+                { value: "dinnerMenu", text: "dinnerMenu"}],
             validate: function(value){
                 if($.trim(value) == '')
                 {
