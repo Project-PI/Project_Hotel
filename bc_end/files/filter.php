@@ -2,7 +2,8 @@
 //filter.php
 if(isset($_POST["from_date"], $_POST["to_date"]))
 {
-    $connect = mysqli_connect("localhost", "root", "Meas1122", "project_pi");
+    $connect = mysqli_connect("localhost", "root", "", "project_pi");
+//    require "db.php";
     $output = '';
     $query = "  
            SELECT * FROM booking  
@@ -33,7 +34,7 @@ if(isset($_POST["from_date"], $_POST["to_date"]))
                           <td>'. $row["adult"] .'</td>  
                           <td>'. $row["children"] .'</td>  
                           <td>'. $row["suite"] .'</td>  
-                          <td>'. $row["no"] .'</td> 
+                          <td>'. $row["no_room"] .'</td> 
                           <td>'. $row["from_date"] .'</td>  
                           <td>'. $row["to_date"] .'</td>  
                           <td>'. $row["cuisine"] .'</td>  

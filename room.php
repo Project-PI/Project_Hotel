@@ -5,13 +5,14 @@ if(isset($_POST['submit'])){
     $adult = $_POST['adult'];
     $children = $_POST['children'];
     $suite = $_POST['suite'];
+    $no_room = $_POST['no_room'];
     $from_date =strtotime($_POST['from_date']);
     $from_date = date("Y-m-d",$from_date);
     $to_date =strtotime($_POST['to_date']);
     $to_date = date("Y-m-d",$to_date);
     $cuisine = $_POST['cuisine'];
 
-    $sql = "INSERT INTO booking (place,adult,children,suite,from_date,to_date,cuisine) VALUES('$place','$adult','$children','$suite','$from_date', '$to_date','$cuisine')";
+    $sql = "INSERT INTO booking (place, adult, children, suite, no_room, from_date, to_date, cuisine) VALUES('$place','$adult','$children','$suite','$no_room','$from_date', '$to_date','$cuisine')";
 
     $result = $conn->query($sql);
 
@@ -304,6 +305,22 @@ if(isset($_POST['submit'])){
                 </select>
             </div>
             <div class="form-group has-warning wow slideInRight">
+                <label for="selectYourPlace">No. of Room</label>
+                <select type="text" class="form-control" name="no_room">
+                    <option></option>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                </select>
+            </div>
+            <div class="form-group has-warning wow slideInLeft">
                 <label for="selectYourPlace">Suite</label>
                 <select class="form-control" name="suite">
                     <option></option>
