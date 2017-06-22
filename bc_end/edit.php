@@ -1,5 +1,5 @@
 <?php 
-          $connect = mysqli_connect("localhost", "root", "Meas1122", "project_pi");
+          $connect = mysqli_connect("localhost", "root", "", "project_pi");
          if(isset($_POST["id"]))  
          {  
               $query = "SELECT * FROM booking WHERE id = '".$_POST["id"]."'";
