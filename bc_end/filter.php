@@ -20,6 +20,7 @@ if(isset($_POST["from_date"], $_POST["to_date"]))
                     <th>From Date</th>
                     <th>To Date</th>
                     <th>Cuisine</th>
+                    <th>Action</th>
                 </tr>  
       ';
     if(mysqli_num_rows($result) > 0)
