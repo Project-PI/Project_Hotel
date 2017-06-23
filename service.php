@@ -101,7 +101,7 @@
                                             <?php
                                             require_once ('dbconf.php');
 
-                                            $sql =' select * from menus';
+                                            $sql =' select * from employee';
                                             $result=$conn->query($sql);
                                             $n=0;
                                             while ($row=$result->fetch_assoc()) {
