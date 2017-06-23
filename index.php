@@ -59,24 +59,26 @@
 		<!-- Start body here -->
 		<section class="home_body">
 			<!--banner  start hwew-->
-			<div class="banner">
-				<div class="container">
-					<div class="banner-main wow zoomIn" data-wow-delay="0.3s">
-						<h2>L'HOTEL Paris</h2>
-						<h6>Welcome To Our Hotels</h6>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-					</div>
-			    </div>
-			</div>
+            <div class="banner">
+                <div class="container">
+                    <div class="banner-main wow zoomIn" data-wow-delay="0.3s">
+                        <h2>MR HOTELS</h2>
+                        <h6>Welcome To Our Hotels</h6>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                    </div>
+                </div>
+            </div>
 			<!--BANNER END HERE-->
 
 			<!-- branch-text star here-->
 			<div class="branch-text">
-			   <div class="container">
-						<span class="quotations_up"> </span>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-						<span class="quotations_down"> </span>
-			  </div>
+				<div class="container">
+					   <div class="">
+							<span class="quotations_up"> </span>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+							<span class="quotations_down"> </span>
+				   		</div>
+				</div>
 			</div>
 			<!-- branch-text end here-->
 
@@ -163,12 +165,12 @@
 						<h3>Our Branches</h3>
 					</div>
 					<div  id="effect" class="branch-btm">
-						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 branch-gd-main ">
+						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 branch-gd-main ">
 						    <div class="branch-gd">
 						        <img class="img-responsive" src="Public/image/b6.jpg" alt="">
 						    </div>
 						</div>
-						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 branch-gd-main">
+						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 branch-gd-main">
 						    <div class="branch-gd">
 						        <img class="img-responsive" src="Public/image/b1.jpg" alt="">
 						    </div>
@@ -176,7 +178,7 @@
 						        <img class="img-responsive" src="Public/image/b2.jpg" alt="">
 						    </div>
 						</div>
-						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 branch-gd-main">
+						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 branch-gd-main">
 						    <div class="branch-gd">
 						        <img class="img-responsive" src="Public/image/b3.jpg" alt="">
 						    </div>
@@ -184,7 +186,7 @@
 						        <img class="img-responsive" src="Public/image/b4.jpg" alt="">
 						    </div>
 						</div>
-						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 branch-gd-main">
+						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 branch-gd-main">
 						    <div  class="branch-gd">
 						        <img class="img-responsive" src="Public/image/b5.jpg" alt="">
 						    </div>
@@ -320,107 +322,108 @@
 				</div>
 			</div><!--home grid end here-->
 		</section><!-- end body here -->
+
 		<!-- Start footer here -->
-		<section class="footer-page">
-			<!-- FOOTER -->
-	        <footer id="footer">
+        <section class="footer-page">
+            <!-- FOOTER -->
+            <footer id="footer">
 
-	            <!-- FOOTER TOP -->
-	            <div class="footer_top">
-	                <div class="container">
-	                    <div class="row">
+                <!-- FOOTER TOP -->
+                <div class="footer_top">
+                    <div class="container">
+                        <div class="row">
 
-	                        <!-- WIDGET MAILCHIMP -->
-	                        <div class="col-md-3 wow fadeInDown" data-wow-delay="0s">
-	                        	<div class="mailchimp">
-	                        		<i class="fa fa-envelope" aria-hidden="true"></i>
-	                                <h4>News &amp; Offers</h4>
-	                            </div>
-	                        </div>
-	                        <div class="col-md-5">
-	                            <div class="mailchimp">
-	                                <div class="mailchimp-form">
-	                                    <form action="#" method="POST" class="form-inline">
-	                                        <div class="col-md-8">
-	                                        	<input type="text" name="email" placeholder="Your email address" class="input-text">
-	                                        </div>
-	                                        <div class="col-md-3">
-	                                        	<button class="awe-btn">SIGN UP</button>
-	                                        </div>
-	                                    </form>
-	                                </div>
-	                            </div>
-	                        </div>
-	                        <!-- END / WIDGET MAILCHIMP -->
-	                        
-	                        <!-- WIDGET SOCIAL -->
-	                        <div class="col-md-4">
-	                            <div class="social">
-	                                <div class="social-content wow zoomIn">
-	                                    <a href="#"><i class="fa fa-pinterest"></i></a>
-	                                    <a href="#"><i class="fa fa-facebook"></i></a>
-	                                    <a href="#"><i class="fa fa-twitter"></i></a>
-	                                    <a href="#"><i class="fa fa-google-plus"></i></a>
-	                                    <a href="#"><i class="fa fa-instagram"></i></a>
-	                                </div>
-	                            </div>
-	                        </div>
-	                        <!-- END / WIDGET SOCIAL -->
+                            <!-- WIDGET MAILCHIMP -->
+                            <div class="col-md-3 wow fadeInDown" data-wow-delay="0s">
+                                <div class="mailchimp">
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    <h4>News &amp; Offers</h4>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="mailchimp">
+                                    <div class="mailchimp-form">
+                                        <form action="#" method="POST" class="form-inline">
+                                            <div class="col-md-8">
+                                                <input type="text" name="email" placeholder="Your email address" class="input-text">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <button class="awe-btn">SIGN UP</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END / WIDGET MAILCHIMP -->
 
-	                    </div>
-	                </div>
-	            </div>
-	            <!-- END / FOOTER TOP -->
+                            <!-- WIDGET SOCIAL -->
+                            <div class="col-md-4">
+                                <div class="social">
+                                    <div class="social-content wow zoomIn">
+                                        <a href="#"><i class="fa fa-pinterest"></i></a>
+                                        <a href="#"><i class="fa fa-facebook"></i></a>
+                                        <a href="#"><i class="fa fa-twitter"></i></a>
+                                        <a href="#"><i class="fa fa-google-plus"></i></a>
+                                        <a href="#"><i class="fa fa-instagram"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END / WIDGET SOCIAL -->
 
-	            <!-- FOOTER CENTER -->
-	            <div class="footer_center">
-	                <div class="container" style="margin: 0;padding: 0">
-	                    <div class="row" style="margin: 0;">
+                        </div>
+                    </div>
+                </div>
+                <!-- END / FOOTER TOP -->
 
-	                        <div class="col-xs-12 col-lg-6" style="padding: 0;">
-	                            <div class="widget widget_logo">
-	                                <div class="widget-logo">
-	                                    <div class="img_footer col-md-5 wow slideInLeft" data-wow-delay="0.1s">
-	                                        <a href="#"><img src="Public/image/logo.png" alt="" style=""></a>
-	                                    </div>
-	                                    <div class="text col-md-5 col-md-offset-2">
-	                                        <p><i class="fa fa-map-marker" aria-hidden="true"></i> 225 Beach Street, Australian</p>
-	                                        <p><i class="fa fa-volume-control-phone" aria-hidden="true"></i> 1-548-854-8898</p>
-	                                        <p><a href="mailto:hillterhotel@gmail.com">l.hotelparis@gmail.com</a></p>
-	                                    </div>
-	                                </div>
-	                            </div>
-	                        </div>
+                <!-- FOOTER CENTER -->
+                <div class="footer_center">
+                    <div class="container" style="margin: 0;padding: 0">
+                        <div class="row" style="margin: 0;">
 
-	                        <div class="col-xs-4 col-lg-2">
-	                            <div class="widget">
-	                                <h4 class="widget-title">Page site</h4>
-	                                <ul>
-	                                    <li><a href="room.php#booking">Guest Book</a></li>
-	                                    <li><a href="room.php#galleryimg">Gallery</a></li>
-	                                    <li><a href="service.php#Dining">Restaurant</a></li>
-	                                    <li><a href="#event">Event</a></li>
-	                                </ul>
-	                            </div>
-	                        </div>
+                            <div class="col-xs-12 col-lg-6" style="padding: 0;">
+                                <div class="widget widget_logo">
+                                    <div class="widget-logo">
+                                        <div class="img_footer col-md-5 wow slideInLeft" data-wow-delay="0.1s">
+                                            <a href="#"><img src="Public/image/logo.png" alt="" style=""></a>
+                                        </div>
+                                        <div class="text col-md-5 col-md-offset-2">
+                                            <p><i class="fa fa-map-marker" aria-hidden="true"></i> 225 Beach Street, Australian</p>
+                                            <p><i class="fa fa-volume-control-phone" aria-hidden="true"></i> 1-548-854-8898</p>
+                                            <p><a href="mailto:L'hotel.paris@gmail.com">l.hotelparis@gmail.com</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-	                        <div class="col-xs-4 col-lg-2">
-	                            <div class="widget">
-	                                <h4 class="widget-title">ABOUT</h4>
-	                                <ul>
-	                                    <li><a href="About.php">About</a></li>
-	                                    <li><a href="contact_us.php">Contact Us</a></li>
-	                                    <li><a href="#">Comming Soon</a></li>
-	                                </ul>
-	                            </div>
-	                        </div>
+                            <div class="col-xs-4 col-lg-2">
+                                <div class="widget">
+                                    <h4 class="widget-title">Page site</h4>
+                                    <ul>
+                                        <li><a href="room.php#booking">Guest Book</a></li>
+                                        <li><a href="room.php#galleryimg">Gallery</a></li>
+                                        <li><a href="service.php#Dining">Restaurant</a></li>
+                                        <li><a href="#event">Event</a></li>
+                                    </ul>
+                                </div>
+                            </div>
 
-	                        <div class="col-xs-4 col-lg-2">
-	                            <div class="widget widget_tripadvisor">
-	                                <h4 class="widget-title">Tripadvisor</h4>
-	                                <div class="tripadvisor">
-	                                    <p>Now with hotel reviews by</p>
-	                                    <img src="Public/image/footer_tripadvisor.png" alt="">
+                            <div class="col-xs-4 col-lg-2">
+                                <div class="widget">
+                                    <h4 class="widget-title">ABOUT</h4>
+                                    <ul>
+                                        <li><a href="About.php">About</a></li>
+                                        <li><a href="contact_us.php">Contact Us</a></li>
+                                        <li><a href="#">Comming Soon</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-4 col-lg-2">
+                                <div class="widget widget_tripadvisor">
+                                    <h4 class="widget-title">Tripadvisor</h4>
+                                    <div class="tripadvisor">
+                                        <p>Now with hotel reviews by</p>
+                                        <img src="Public/image/footer_tripadvisor.png" alt="">
 	                                    <span class="tripadvisor-circle">
 	                                        <i></i>
 	                                        <i></i>
@@ -428,27 +431,26 @@
 	                                        <i></i>
 	                                        <i class="part"></i>
 	                                    </span>
-	                                </div>
-	                            </div>
-	                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
 
-	                    </div>
-	                </div>
-	            </div>
-	            <!-- END / FOOTER CENTER -->
+                        </div>
+                    </div>
+                </div>
+                <!-- END / FOOTER CENTER -->
 
-	            <!-- FOOTER BOTTOM -->
-	            <div class="footer_bottom">
-	                <div>
-	                    <p>&copy; 2017 Project Team 1A All rights reserved.</p>
-	                </div>
-	            </div>
-	            <!-- END / FOOTER BOTTOM -->
-	        </footer>
-		</section>
+                <!-- FOOTER BOTTOM -->
+                <div class="footer_bottom">
+                    <div>
+                        <p>&copy;  2017 Project Team All rights reserved.</p>
+                    </div>
+                </div>
+                <!-- END / FOOTER BOTTOM -->
+            </footer>
+        </section>
 		<!-- end footer here -->
-
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<script src="Public/js/About.js"></script>
