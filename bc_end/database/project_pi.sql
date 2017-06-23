@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
--- https://www.phpmyadmin.net/
+-- version 4.1.14
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 23, 2017 at 05:23 AM
--- Server version: 5.7.14
--- PHP Version: 5.6.25
+-- Generation Time: Jun 23, 2017 at 10:33 AM
+-- Server version: 5.6.17
+-- PHP Version: 5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `project_pi`
@@ -26,8 +26,8 @@ SET time_zone = "+00:00";
 -- Table structure for table `booking`
 --
 
-CREATE TABLE `booking` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `booking` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `place` varchar(250) NOT NULL,
   `adult` int(11) NOT NULL,
   `children` int(11) NOT NULL,
@@ -35,8 +35,9 @@ CREATE TABLE `booking` (
   `no_room` int(11) NOT NULL,
   `from_date` date NOT NULL,
   `to_date` date NOT NULL,
-  `cuisine` text NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `cuisine` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=52 ;
 
 --
 -- Dumping data for table `booking`
@@ -100,14 +101,15 @@ INSERT INTO `booking` (`id`, `place`, `adult`, `children`, `suite`, `no_room`, `
 -- Table structure for table `contact_us`
 --
 
-CREATE TABLE `contact_us` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `contact_us` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `first_name` varchar(100) NOT NULL,
   `last_name` varchar(100) NOT NULL,
   `email` text NOT NULL,
   `phone` int(11) NOT NULL,
-  `message` text NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `message` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `contact_us`
@@ -122,13 +124,14 @@ INSERT INTO `contact_us` (`id`, `first_name`, `last_name`, `email`, `phone`, `me
 -- Table structure for table `employee`
 --
 
-CREATE TABLE `employee` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `employee` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `food_name` varchar(300) NOT NULL,
   `contain` text NOT NULL,
   `price` float NOT NULL,
-  `type_food` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `type_food` varchar(150) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=67 ;
 
 --
 -- Dumping data for table `employee`
@@ -205,101 +208,16 @@ INSERT INTO `employee` (`id`, `food_name`, `contain`, `price`, `type_food`) VALU
 -- --------------------------------------------------------
 
 --
--- Table structure for table `menus`
---
-
-CREATE TABLE `menus` (
-  `id` int(11) NOT NULL,
-  `food_name` varchar(300) NOT NULL,
-  `contain` text NOT NULL,
-  `price` float NOT NULL,
-  `type_food` varchar(100) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `menus`
---
-
-INSERT INTO `menus` (`id`, `food_name`, `contain`, `price`, `type_food`) VALUES
-(1, 'Baked Dijon Salmon', 'Pineapple, Minced Beef, Cheese.', 30, 'mainFood'),
-(2, 'Baked Salmon', 'Tuna, Sweetcorn, Cheese.', 50, 'mainFood'),
-(3, 'Cajun Seafood Pasta', 'Chicken, mozzarella cheese, onions.', 30, 'mainFood'),
-(4, 'Creamy Pesto Shrimp', 'Cheese, tomato, mushrooms, onions.', 25, 'mainFood'),
-(5, 'Clams & Garlic', 'Cheese, tomato, mushrooms, onions.', 50, 'mainFood'),
-(6, 'Coconut Shrimp', 'Cheese, tomato, mushrooms, onions.', 25, 'mainFood'),
-(7, 'Fish Tacos', 'Chicken, mozzarella cheese, onions.', 30, 'mainFood'),
-(8, 'Grilled Fish Steaks', 'Tuna, Sweetcorn, Cheese.', 25, 'mainFood'),
-(9, 'Garlic Shrimp Scampy', 'Pineapple, Minced Beef, Cheese.', 30, 'mainFood'),
-(10, 'Grilled Alaska Salmon', 'Tuna, Sweetcorn, Cheese.', 50, 'mainFood'),
-(11, 'Grilled Salmon', 'Cheese, tomato, mushrooms, onions.', 50, 'mainFood'),
-(12, 'Grilled Shrimp', 'Chicken, mozzarella cheese, onions.', 56, 'mainFood'),
-(13, 'Maple Salmon', 'Tuna, Sweetcorn, Cheese.', 25, 'mainFood'),
-(14, 'Mussels Mariniere', 'Tuna, Sweetcorn, Cheese.', 50, 'mainFood'),
-(15, 'Lemon Garlic Tilapia', 'Chicken, mozzarella cheese, onions.', 62, 'mainFood'),
-(16, 'Lemon Shrimp Linguini', 'Pineapple, Minced Beef, Cheese.', 30, 'mainFood'),
-(17, 'Peppered Shrimp Alfredo', 'Tuna, Sweetcorn, Cheese', 25, 'mainFood'),
-(18, 'Rockin Oysters', 'Pineapple, Minced Beef, Cheese.', 62, 'mainFood'),
-(19, 'Tuna Noodle Casserole', 'Pineapple, Minced Beef, Cheese.', 62, 'mainFood'),
-(20, 'Salmon Cakes', '>Chicken, mozzarella cheese, onions.', 62, 'mainFood'),
-(21, 'Sesame Seared Tuna', 'Chicken, mozzarella cheese, onions.', 30, 'mainFood'),
-(22, 'Shrimp Scampi Bake', 'Cheese, tomato, mushrooms, onions.', 25, 'mainFood'),
-(23, 'Szechwan Shrimp', 'Pineapple, Minced Beef, Cheese.', 62, 'mainFood'),
-(24, 'Tuna Casserole', 'Cheese, tomato, mushrooms, onions.', 50, 'mainFood'),
-(25, 'Breaded Mushrooms', '', 5.5, 'hotAppetizers'),
-(26, 'Chicken Fingers', '', 7.95, 'hotAppetizers'),
-(27, 'Clams Oregarato', '', 8.95, 'hotAppetizers'),
-(28, 'Fried Calamari', '', 9.95, 'hotAppetizers'),
-(29, 'Fried Shrimp & Calamari', '', 12.5, 'hotAppetizers'),
-(30, 'French Fries', '', 4, 'hotAppetizers'),
-(31, 'French Fries', 'Cheese', 4.75, 'hotAppetizers'),
-(32, 'Garlic Bread', '', 3.3, 'hotAppetizers'),
-(33, 'Garlic Bread', 'Cheese', 4.3, 'hotAppetizers'),
-(34, 'Jalapeno Popper', '', 5, 'hotAppetizers'),
-(35, 'Mussels', 'White or Red sauce', 9.9, 'hotAppetizers'),
-(36, 'Mozzarella Sticks', '', 7, 'hotAppetizers'),
-(37, 'Zucchini Sticks', '', 6.95, 'hotAppetizers'),
-(38, 'Hot wing', '', 7.35, 'hotAppetizers'),
-(39, 'Onion Rings', '', 5.35, 'hotAppetizers'),
-(40, 'Onion Rings', 'Cheese', 5.95, 'hotAppetizers'),
-(41, 'Antipasto', 'Small', 7.95, 'salad&soup'),
-(42, 'Antipasto', 'Large', 10.25, 'salad&soup'),
-(43, 'Chef Salad', '', 7.5, 'salad&soup'),
-(44, 'Grilled Chicken Salad', '', 7.5, 'salad&soup'),
-(45, 'Mozzaella & Tomato Salad', '', 6.5, 'salad&soup'),
-(46, 'Mixed Salad', '', 4.75, 'salad&soup'),
-(47, 'Tuna Salad', '', 7.5, 'salad&soup'),
-(48, 'Extra Oressing', 'each ', 0.75, 'salad&soup'),
-(49, 'Chicken Soup', '', 4.5, 'salad&soup'),
-(50, 'Minestrone', '', 4.5, 'salad&soup'),
-(51, 'Mushrooms Soup', '', 3.5, 'salad&soup'),
-(52, 'Passta Fagioli Soup', '', 4.5, 'salad&soup'),
-(53, 'Broccoli Saute', '', 4.95, 'vegetable'),
-(54, 'Escarole Saute', '', 4.95, 'vegetable'),
-(55, 'Spinach Saute', '', 4.95, 'vegetable'),
-(56, 'String Beans Saute', '', 4.95, 'vegetable'),
-(57, 'String Beans Marinara', '', 4.95, 'vegetable'),
-(58, 'Bruschetta de Flageolets', '', 19, 'dinnerMenu'),
-(59, 'Champignon Portabella', '', 22, 'dinnerMenu'),
-(60, 'Crêpe au Fromage de Chèvre', '', 21, 'dinnerMenu'),
-(61, 'Crêpe au Fromage de Brie', '', 21.75, 'dinnerMenu'),
-(62, 'Crevettes Sauce Boursin', '', 23.2, 'dinnerMenu'),
-(63, 'Escargots Bourguignon', '', 21.5, 'dinnerMenu'),
-(64, 'Moules Marinières ou à la crème', '', 20.5, 'dinnerMenu'),
-(65, 'Paté Maison', '', 20.5, 'dinnerMenu'),
-(66, 'Saumon Fumé', '', 23.5, 'dinnerMenu');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `news`
 --
 
-CREATE TABLE `news` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `news` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `contain` text NOT NULL,
   `post_date` date NOT NULL,
-  `img` text NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `img` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -307,11 +225,12 @@ CREATE TABLE `news` (
 -- Table structure for table `tbl_images`
 --
 
-CREATE TABLE `tbl_images` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbl_images` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` longblob NOT NULL,
-  `type_img` varchar(100) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `type_img` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
 
 --
 -- Dumping data for table `tbl_images`
@@ -366,8 +285,8 @@ INSERT INTO `tbl_images` (`id`, `name`, `type_img`) VALUES
 -- Table structure for table `user_admin`
 --
 
-CREATE TABLE `user_admin` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `user_admin` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `first_name` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
   `sex` varchar(30) NOT NULL,
@@ -375,8 +294,9 @@ CREATE TABLE `user_admin` (
   `email` varchar(100) NOT NULL,
   `about_me` text NOT NULL,
   `hash` varchar(100) NOT NULL,
-  `active` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `active` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `user_admin`
@@ -387,91 +307,6 @@ INSERT INTO `user_admin` (`id`, `first_name`, `last_name`, `sex`, `password`, `e
 (2, 'Sreymeas', 'NAO', 'Female', '$2y$10$QSKhJuAn1OOzZ3uWIpG.l.UPKfMVYfoOPBMw.qsEG81QRUkjCnzee', 'naosreymeas2@gmail.com', 'sreymeas', 'a64c94baaf368e1840a1324e839230de', 1),
 (3, 'CHON', 'Sovanary', 'Female', '$2y$10$NVaZjPrtqVe1MDlPrehRp.NhQLfEV2fBZS5ReipF7ww6O2QQjeNwK', 'chonsovanary2015@gmail.com', 'hi', '37693cfc748049e45d87b8c7d8b9aacd', 1);
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `booking`
---
-ALTER TABLE `booking`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `contact_us`
---
-ALTER TABLE `contact_us`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `employee`
---
-ALTER TABLE `employee`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `menus`
---
-ALTER TABLE `menus`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `news`
---
-ALTER TABLE `news`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `tbl_images`
---
-ALTER TABLE `tbl_images`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `user_admin`
---
-ALTER TABLE `user_admin`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `booking`
---
-ALTER TABLE `booking`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
---
--- AUTO_INCREMENT for table `contact_us`
---
-ALTER TABLE `contact_us`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `employee`
---
-ALTER TABLE `employee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
---
--- AUTO_INCREMENT for table `menus`
---
-ALTER TABLE `menus`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
---
--- AUTO_INCREMENT for table `news`
---
-ALTER TABLE `news`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `tbl_images`
---
-ALTER TABLE `tbl_images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
---
--- AUTO_INCREMENT for table `user_admin`
---
-ALTER TABLE `user_admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
