@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
         <div class="sidebar-wrapper">
             <ul class="nav">
-                <li class="active">
+                <li>
                     <a href="user.php">
                         <i class="material-icons">person</i>
                         <p>User Profile</p>
@@ -108,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                         <i class="material-icons">library_books</i>
                         <p>Sign up</p>
                     </a>
-                </li>
+                </li class="active">
                 <li class="active-pro">
                     <a href="logout.php">
                         <i class="material-icons" name="logout">unarchive</i>
