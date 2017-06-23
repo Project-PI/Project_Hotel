@@ -28,40 +28,21 @@ else {
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
-
-    <!-- Bootstrap core CSS     -->
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
-
     <!--  Material Dashboard CSS    -->
     <link href="assets/css/material-dashboard.css" rel="stylesheet"/>
 
-    <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="assets/css/demo.css" rel="stylesheet" />
+    <script src="source/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="source/bootstrap.min.css" />
+    <link rel="stylesheet" href="source/jquery-ui.css">
+    <script src="source/jquery-ui.js"></script>
 
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
 
-    <!--   Core JS Files   -->
-    <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="assets/js/material.min.js" type="text/javascript"></script>
-
-    <!--  Charts Plugin -->
-    <script src="assets/js/chartist.min.js"></script>
-
-    <!--  Notifications Plugin    -->
-    <script src="assets/js/bootstrap-notify.js"></script>
-
-
-    <!-- Material Dashboard javascript methods -->
-    <script src="assets/js/material-dashboard.js"></script>
-
-    <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-    <script src="assets/js/demo.js"></script>
-
-    <script src="source/jquery.min.js"></script>
-    <script src="source/jquery-ui.js"></script>
-    <link rel="stylesheet" href="source/jquery-ui.css">
 
 
 </head>
@@ -348,6 +329,24 @@ else {
         </div>
     </div>
 </div>
+
+<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="assets/js/material.min.js" type="text/javascript"></script>
+
+<script src="assets/js/chartist.min.js"></script>
+
+<!--  Notifications Plugin    -->
+<script src="assets/js/bootstrap-notify.js"></script>
+
+<!--  Google Maps Plugin    -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+
+<!-- Material Dashboard javascript methods -->
+<script src="assets/js/material-dashboard.js"></script>
+
+<!-- Material Dashboard DEMO methods, don't include it in your project! -->
+<script src="assets/js/demo.js"></script>
+
 <script>
     $(document).ready(function(){
         $.datepicker.setDefaults({
