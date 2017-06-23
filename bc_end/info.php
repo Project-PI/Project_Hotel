@@ -24,8 +24,8 @@ else {
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
-    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="source/jquery.min.js"></script>
+    <!--    <script src="source/bootstrap.min.css"></script>-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.1/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.1/bootstrap3-editable/js/bootstrap-editable.js"></script>
 
@@ -52,7 +52,7 @@ else {
 
 <div class="wrapper">
 
-    <div class="sidebar" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
+    <div class="sidebar" data-color="purple" data-image="assets/img/sidebar-1.jpg">
         <!--
             Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
 
@@ -75,14 +75,14 @@ else {
                 </li>
 
                 <li class="active">
-                    <a href="info.php.">
+                    <a href="info.php">
                         <i class="material-icons">dashboard</i>
                         <p>Dashboard</p>
                     </a>
                 </li>
 
                 <li>
-                    <a href="table_list.php.">
+                    <a href="table_list.php">
                         <i class="material-icons">content_paste</i>
                         <p>Table List</p>
                     </a>
@@ -103,6 +103,49 @@ else {
         </div>
     </div>
     <div class="main-panel">
+        <nav class="navbar navbar-transparent navbar-absolute">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Table List</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="material-icons">dashboard</i>
+                                <p class="hidden-lg hidden-md">Dashboard</p>
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="material-icons">notifications</i>
+                                <span class="notification">5</span>
+                                <p class="hidden-lg hidden-md">Notifications</p>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Mike John responded to your email</a></li>
+                                <li><a href="#">You have 5 new tasks</a></li>
+                                <li><a href="#">You're now friend with Andrew</a></li>
+                                <li><a href="#">Another Notification</a></li>
+                                <li><a href="#">Another One</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="material-icons">person</i>
+                                <p class="hidden-lg hidden-md">Profile</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -130,13 +173,60 @@ else {
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <br />
+                        <div class="card">
+                            <div class="card-header" data-background-color="purple">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h4 class="title">Table Images</h4>
+                                        <p class="category">Here is a subtitle for this table</p>
+                                    </div>
+                                    <div class="col-md-2 col-md-offset-4">
+                                        <button type="button" name="add" id="add" class="btn btn-success">Add</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="image_data" class="card-content table-responsive" style="height: 60em; overflow: auto; margin-top: 20px;"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+        <footer class="footer">
+            <div class="container-fluid">
+                <nav class="pull-left">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Company
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Portfolio
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Blog
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </footer>
     </div>
 </div>
 
 <!--   Core JS Files   -->
-<script src="assets/js/jquery-3.1.0.min.js" type="text/javascript"></script>
+<script src="assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
 <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="assets/js/material.min.js" type="text/javascript"></script>
 
@@ -252,5 +342,133 @@ else {
         });
     });
 </script>
+
 </body>
 </html>
+
+<div id="imageModal" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="left: 0; margin-left: 30%; margin-right: 0">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add Image</h4>
+            </div>
+            <div class="modal-body">
+                <form id="image_form" method="post" enctype="multipart/form-data">
+                    <p><label>Select Image</label><br>
+                        <label style="margin-left: 45%">
+                            <i class="fa fa-picture-o fa-5x" aria-hidden="true"></i>
+                            <input type="file" name="image" id="image" style="display: none"/>
+                        </label>
+                    </p>
+                    <input type="hidden" name="action" id="action" value="insert" />
+                    <input type="hidden" name="image_id" id="image_id" />
+                    <select name="type_img" id="type_Img" class="form-control">
+                        <option value="branches_img">Branches_img</option>
+                        <option value="chef_img">Chef_img</option>
+                        <option value="news_img">News_img</option>
+                        <option value="timeline_img">Timeline_img</option>
+                        <option value="team_img">Team_img</option>
+                        <option value="gallery_img">Gallery_img</option>
+                    </select><br/>
+                    <div class="modal-footer" style="right: 0">
+                        <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-info" />
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Script for table add image-->
+<script>
+    $(document).ready(function(){
+
+        fetch_data();
+
+        function fetch_data()
+        {
+            var action = "fetch";
+            $.ajax({
+                url:"./files/action.php",
+                method:"POST",
+                data:{action:action},
+                success:function(data)
+                {
+                    $('#image_data').html(data);
+                }
+            })
+        }
+        $('#add').click(function(){
+            $('#imageModal').modal('show');
+            $('#image_form')[0].reset();
+            $('.modal-title').text("Add Image");
+            $('#image_id').val('');
+            $('#action').val('insert');
+            $('#insert').val("Insert");
+        });
+        $('#image_form').submit(function(event){
+            event.preventDefault();
+            var image_name = $('#image').val();
+            if(image_name == '')
+            {
+                alert("Please Select Image");
+                return false;
+            }
+            else
+            {
+                var extension = $('#image').val().split('.').pop().toLowerCase();
+                if(jQuery.inArray(extension, ['gif','png','jpg','jpeg']) == -1)
+                {
+                    alert("Invalid Image File");
+                    $('#image').val('');
+                    return false;
+                }
+                else
+                {
+                    $.ajax({
+                        url:"./files/action.php",
+                        method:"POST",
+                        data:new FormData(this),
+                        contentType:false,
+                        processData:false,
+                        success:function(data)
+                        {
+                            alert(data);
+                            fetch_data();
+                            $('#image_form')[0].reset();
+                            $('#imageModal').modal('hide');
+                        }
+                    });
+                }
+            }
+        });
+        $(document).on('click', '.update', function(){
+            $('#image_id').val($(this).attr("id"));
+            $('#action').val("update");
+            $('.modal-title').text("Update Image");
+            $('#insert').val("Update");
+            $('#imageModal').modal("show");
+        });
+        $(document).on('click', '.delete', function(){
+            var image_id = $(this).attr("id");
+            var action = "delete";
+            if(confirm("Are you sure you want to remove this image from database?")) {
+                $.ajax({
+                    url:"./files/action.php",
+                    method:"POST",
+                    data:{image_id:image_id, action:action},
+                    success:function(data)
+                    {
+                        alert(data);
+                        fetch_data();
+                    }
+                })
+            }
+            else {
+                return false;
+            }
+        });
+    });
+</script>
