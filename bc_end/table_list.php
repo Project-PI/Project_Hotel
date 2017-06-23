@@ -1,5 +1,21 @@
+<?php
+/* Displays user information and some useful messages */
+session_start();
 
-<!DOCTYPE html>
+// Check if user is logged in using the session variable
+if ( $_SESSION['logged_in'] != 1 ) {
+    $_SESSION['message'] = "You must log in before viewing your profile page!";
+    header("location: error.php");
+}
+else {
+    // Makes it easier to read
+    $first_name = $_SESSION['first_name'];
+    $last_name = $_SESSION['last_name'];
+    $email = $_SESSION['email'];
+    $active = $_SESSION['active'];
+}
+?>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -14,145 +30,64 @@
 
 
     <!-- Bootstrap core CSS     -->
-
-
-    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+
     <!--  Material Dashboard CSS    -->
     <link href="assets/css/material-dashboard.css" rel="stylesheet"/>
 
-    <script src="source/jquery.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="source/bootstrap.min.css" />
-    <link rel="stylesheet" href="source/jquery-ui.css">
-    <script src="source/jquery-ui.js"></script>
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="assets/css/demo.css" rel="stylesheet" />
 
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
 
-    <style>
+    <!--   Core JS Files   -->
+    <script src="assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+    <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="assets/js/material.min.js" type="text/javascript"></script>
 
-        .modal {
-            overflow: inherit;
-            overflow-y: inherit;
-            text-align: center;
-            padding: 0;
-        }
+    <!--  Charts Plugin -->
+    <script src="assets/js/chartist.min.js"></script>
 
-        .modal:before {
-            content: '';
-            display: inline-block;
-            height: 100%;
-            vertical-align: middle;
-            margin-right: -4px;
-        }
+    <!--  Notifications Plugin    -->
+    <script src="assets/js/bootstrap-notify.js"></script>
 
-        .modal-dialog {
-            max-width: 500px;
-            padding: 0;
-            display: inline-block;
-            text-align: left;
-            vertical-align: middle;
-        }
 
-        .modal-content {
+    <!-- Material Dashboard javascript methods -->
+    <script src="assets/js/material-dashboard.js"></script>
 
-            border: 0;
-            border-radius: 0;
-
-        }
-
-        .modal-header {
-            border: 0;
-            padding 0;
-            position: relative;
-        }
-
-        .modal-header .close {
-            margin: 0;
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            width: 23px;
-            height: 23px;
-            border-radius: 23px;
-            background-color: #00aeef;
-            color: #ffe300;
-            font-size: 9px;
-            opacity: 1;
-            z-index: 10;
-        }
-
-        .modal-content p {
-            padding: 0 20px;
-        }
-
-        .modal-body {
-            padding: 0 0 0px 0;
-            height: 450px;
-            overflow: auto;
-        }
-
-    </style>
-
+    <!-- Material Dashboard DEMO methods, don't include it in your project! -->
+    <script src="assets/js/demo.js"></script>
 </head>
 
 <body>
-<div id="add_data_Modal" class="modal fade" data-backdrop="false">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h2 class="title">Booking Table</h2>
-            </div>
-            <div class="modal-body">
-                <form method="post" id="insert_form">
-                    <label>Adult</label>
-                    <input type="text"  class="form-control"  id="adult" name="adult" placeholder="Enter Adult">
-                    <label>Children</label>
-                    <input type="text"  class="form-control"  id="children" name="children" placeholder="Enter children">
-                    <label>suite</label>
-                    <input type="text"  class="form-control"  id="suite" name="suite" placeholder="Enter suite">
-                    <label>NO</label>
-                    <input type="text"  class="form-control"  id="no" name="no" placeholder="Enter no">
-                    <label>Start Date</label>
-                    <input type="text"  class="form-control"  id="from_date" name="from_date" placeholder="Enter date">
-                    <label>End Date</label>
-                    <input type="text"  class="form-control"  id="to_date" name="to_date" placeholder="Enter date">
-                    <input type="hidden" name="id" id="id" >
-                    <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-success" />
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 <div class="wrapper">
-    <div class="sidebar" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
+    <div class="sidebar" data-color="purple" data-image="assets/img/sidebar-1.jpg">
+        <!--
+            Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
 
+            Tip 2: you can also add an image using data-image tag
+        -->
         <div class="logo">
-            <a href="http://www.creative-tim.com" class="simple-text">
-                Creative Tim
+            <a href="../index.php" class="simple-text">
+                Front-end
             </a>
         </div>
-
 
         <div class="sidebar-wrapper">
             <ul class="nav">
                 <li>
-                    <a href="info.php">
-                        <i class="material-icons">dashboard</i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
-                <li>
                     <a href="user.php">
                         <i class="material-icons">person</i>
                         <p>User Profile</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="info.php">
+                        <i class="material-icons">dashboard</i>
+                        <p>Dashboard</p>
                     </a>
                 </li>
                 <li class="active">
@@ -162,33 +97,15 @@
                     </a>
                 </li>
                 <li>
-                    <a href="typography.html">
+                    <a href="sign-up.php">
                         <i class="material-icons">library_books</i>
-                        <p>Typography</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="icons.html">
-                        <i class="material-icons">bubble_chart</i>
-                        <p>Icons</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="maps.html">
-                        <i class="material-icons">location_on</i>
-                        <p>Maps</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="notifications.html">
-                        <i class="material-icons text-gray">notifications</i>
-                        <p>Notifications</p>
+                        <p>Sign up</p>
                     </a>
                 </li>
                 <li class="active-pro">
-                    <a href="upgrade.html">
-                        <i class="material-icons">unarchive</i>
-                        <p>Upgrade to PRO</p>
+                    <a href="logout.php">
+                        <i class="material-icons" name="logout">unarchive</i>
+                        <p>Log out</p>
                     </a>
                 </li>
             </ul>
@@ -236,20 +153,9 @@
                             </a>
                         </li>
                     </ul>
-
-                    <form class="navbar-form navbar-right" role="search">
-                        <div class="form-group  is-empty">
-                            <input type="text" class="form-control" placeholder="Search">
-                            <span class="material-input"></span>
-                        </div>
-                        <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                            <i class="material-icons">search</i><div class="ripple-container"></div>
-                        </button>
-                    </form>
                 </div>
             </div>
         </nav>
-
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -261,101 +167,102 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-3 col-md-offset-2">
                                     <input type="text" name="from_date" id="from_date1" class="form-control" placeholder="From Date" />
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3 col-md-offset-1">
                                     <input type="text" name="to_date" id="to_date1" class="form-control" placeholder="To Date" />
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="button" name="filter" id="filter" value="Filter" class="btn btn-info" />
+                                    <button type="button" name="filter" id="filter" value="Filter" class="btn btn-white btn-round btn-just-icon" >
+                                        <i class="material-icons">search</i><div class="ripple-container"></div>
+                                    </button>
                                 </div>
                             </div>
 
-                                <div class="card-content table-responsive">
-                                    <table class="table" id="order_table">
-                                        <thead>
-                                        <th>Place</th>
-                                        <th>Adult</th>
-                                        <th>Children</th>
-                                        <th>Suite</th>
-                                        <th>Number of Room</th>
-                                        <th>From Date</th>
-                                        <th>To Date</th>
-                                        <th>Cuisine</th>
-                                        <th>Action</th>
-                                        </thead>
-                                        <tbody>
+                            <div class="card-content table-responsive">
+                                <table class="table" id="order_table">
+                                    <thead>
+                                    <th>Place</th>
+                                    <th>Adult</th>
+                                    <th>Children</th>
+                                    <th>Suite</th>
+                                    <th>Number of Room</th>
+                                    <th>From Date</th>
+                                    <th>To Date</th>
+                                    <th>Cuisine</th>
+                                    <th>Action</th>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+                                    require_once ('../dbconf.php');
+                                    $results_per_page = 10;
+                                    $sql = "select * from booking";
+                                    $result = $conn->query($sql);
+                                    $number_of_results = mysqli_num_rows($result);
+
+                                    $number_of_pages = ceil($number_of_results/$results_per_page);
+
+                                    if(!isset($_GET['page'])){
+                                        $page = 1;
+                                    }else{
+                                        $page = $_GET['page'];
+                                    }
+
+                                    $this_page_first_result = ($page-1)*$results_per_page;
+
+                                    $sql =' select * from booking LIMIT '.$this_page_first_result.','.$results_per_page;
+                                    $result=$conn->query($sql);
+                                    while ($row=$result->fetch_assoc()){
+
+                                    ?>
+                                    <tr >
+                                        <td><?php echo $row['place']; ?></td>
+                                        <td><?php echo $row['adult']; ?></td>
+                                        <td><?php echo $row['children']; ?></td>
+                                        <td><?php echo $row['suite']; ?></td>
+                                        <td><?php echo $row['no_room']; ?></td>
+                                        <td><?php echo $row['from_date']; ?></td>
+                                        <td><?php echo $row['to_date']; ?></td>
+                                        <td><?php echo $row['cuisine']; ?></td>
+
+                                        <td refrow='<?=$row['id']?>'>
+
+                                            <form class="data-target='#add_data_Modal' ">
+                                                <input  type="button" name="edit" value="Update" id="<?php echo $row["id"]; ?>" class="btn btn-info btn-warming edit_data  " />
+                                            </form>
+
+                                        </td>
+
                                         <?php
-                                        require_once ('../dbconf.php');
-                                        $results_per_page = 10;
-                                        $sql = "select * from booking";
-                                        $result = $conn->query($sql);
-                                        $number_of_results = mysqli_num_rows($result);
-
-                                        $number_of_pages = ceil($number_of_results/$results_per_page);
-
-                                        if(!isset($_GET['page'])){
-                                            $page = 1;
-                                        }else{
-                                            $page = $_GET['page'];
-                                        }
-
-                                        $this_page_first_result = ($page-1)*$results_per_page;
-
-                                        $sql =' select * from booking LIMIT '.$this_page_first_result.','.$results_per_page;
-                                        $result=$conn->query($sql);
-                                        while ($row=$result->fetch_assoc()){
-
-                                            ?>
-                                            <tr >
-                                                <td><?php echo $row['place']; ?></td>
-                                                <td><?php echo $row['adult']; ?></td>
-                                                <td><?php echo $row['children']; ?></td>
-                                                <td><?php echo $row['suite']; ?></td>
-                                                <td><?php echo $row['no']; ?></td>
-                                                <td><?php echo $row['from_date']; ?></td>
-                                                <td><?php echo $row['to_date']; ?></td>
-                                                <td><?php echo $row['cuisine']; ?></td>
-
-                                                <td refrow='<?=$row['id']?>'>
-
-                                                    <form class="data-target='#add_data_Modal' ">
-                                                        <input  type="button" name="edit" value="Update" id="<?php echo $row["id"]; ?>" class="btn btn-info btn-warming edit_data  " />
-                                                    </form>
-
-                                                </td>
-
-                                                <?php
-                                                echo "<td><a class=\"btn btn-info btn-danger\" href=\"delete.php?id=$row[id]\" onClick=\"return confirm('Are you sure you want to delete?')\">delete</a></td>";
-                                                ?>
+                                        echo "<td><a class=\"btn btn-info btn-danger\" href=\"delete.php?id=$row[id]\" onClick=\"return confirm('Are you sure you want to delete?')\">delete</a></td>";
+                                        ?>
 
 
 
-                                            <?php
+                                        <?php
                                         }
                                         ?>
-                                        </tbody>
-                                    </table>
-                                    <nav aria-label="Page navigation example">
-                                        <ul class="pagination justify-content-center">
-                                            <?php
-                                            if($page > 1) {
-                                                echo '<li class=\"page-item\"><a class=\"page-link\" href="table_list.php?page='.($page-1).'">Previous</a></li>';
-                                            }
-                                            if($page<=$number_of_pages) {
-                                                echo '<li class=\"page-item\"><a class=\"page-link\" href="table_list.php?page='.($page+1).'">Next</a></li>';
-                                            }
-                                            for($page=1; $page<=$number_of_pages;$page++){
+                                    </tbody>
+                                </table>
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination justify-content-center">
+                                        <?php
+                                        if($page > 1) {
+                                            echo '<li class=\"page-item\"><a class=\"page-link\" href="table_list.php?page='.($page-1).'">Previous</a></li>';
+                                        }
+                                        if($page<=$number_of_pages) {
+                                            echo '<li class=\"page-item\"><a class=\"page-link\" href="table_list.php?page='.($page+1).'">Next</a></li>';
+                                        }
+                                        for($page=1; $page<=$number_of_pages;$page++){
 
-                                                echo '<li class=\"page-item\"><a class=\"page-link\" href="table_list.php?page='.$page.'">'.$page.'</a></li>';
+                                            echo '<li class=\"page-item\"><a class=\"page-link\" href="table_list.php?page='.$page.'">'.$page.'</a></li>';
 
-                                            }
-
-                                            ?>
-                                        </ul>
-                                    </nav>
-                                </div>
+                                        }
+                                        ?>
+                                    </ul>
+                                </nav>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -390,33 +297,52 @@
                         </li>
                     </ul>
                 </nav>
-                <p class="copyright pull-right">
-                    &copy; <script>document.write(new Date().getFullYear())</script> <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
-                </p>
             </div>
         </footer>
     </div>
 </div>
-
-<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="assets/js/material.min.js" type="text/javascript"></script>
-
-<script src="assets/js/chartist.min.js"></script>
-
-<!--  Notifications Plugin    -->
-<script src="assets/js/bootstrap-notify.js"></script>
-
-<!--  Google Maps Plugin    -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
-
-<!-- Material Dashboard javascript methods -->
-<script src="assets/js/material-dashboard.js"></script>
-
-<!-- Material Dashboard DEMO methods, don't include it in your project! -->
-<script src="assets/js/demo.js"></script>
-
-
-
+<div id="add_data_Modal" class="modal fade" data-backdrop="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h2 class="title">Booking Table</h2>
+            </div>
+            <div class="modal-body">
+                <form method="post" id="insert_form">
+                    <label>Adult</label>
+                    <input type="text"  class="form-control"  id="adult" name="adult" placeholder="Enter Adult">
+                    <label>Children</label>
+                    <input type="text"  class="form-control"  id="children" name="children" placeholder="Enter children">
+                    <label>suite</label>
+                    <select class="form-control" name="suite" id="suite" name="suite">
+                        <option></option>
+                        <option value="Single Room">Single Room</option>
+                        <option value="Premium Single Room">Premium Single Room</option>
+                        <option value="Double Room">Double Room</option>
+                        <option value="Premium Double Room">Premium Double Room</option>
+                        <option value="Deluxe Suite">Deluxe Suite</option>
+                        <option value="Executive Suite">Executive Suite</option>
+                        <option value="Ocean View Suite">Ocean View Suite</option>
+                        <option value="Presidential Suite">Presidential Suite</option>
+                        <option value="The Penthouse">The Penthouse</option>
+                    </select>
+                    <label>NO</label>
+                    <input type="text"  class="form-control"  id="no_room" name="no_room" placeholder="Enter no">
+                    <label>Start Date</label>
+                    <input type="text"  class="form-control"  id="from_date" name="from_date" placeholder="Enter date">
+                    <label>End Date</label>
+                    <input type="text"  class="form-control"  id="to_date" name="to_date" placeholder="Enter date">
+                    <input type="hidden" name="id" id="id" >
+                    <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-success" />
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     $(document).ready(function(){
         $.datepicker.setDefaults({
@@ -436,7 +362,7 @@
                     method:"POST",
                     data:{from_date:from_date, to_date:to_date},
                     success:function(data)
-                     {
+                    {
                         $('#order_table').html(data);
                     }
                 });
@@ -462,7 +388,7 @@
                     $('#adult').val(data.adult);
                     $('#children').val(data.children);
                     $('#suite').val(data.suite);
-                    $('#no').val(data.no);
+                    $('#no_room').val(data.no_room);
                     $('#from_date').val(data.from_date);
                     $('#to_date').val(data.to_date);
                     $('#id').val(data.id);
@@ -474,18 +400,14 @@
 
         $('#insert_form').on("submit", function(event){
             event.preventDefault();
-            if($('#adult').val() == "")
-            {
+            if($('#adult').val() == "") {
                 alert("title is required");
             }
-            else if($('#children').val() == "")
-            {
+            else if($('#children').val() == "") {
                 alert("Comment is required");
             }
-
             else
             {
-
                 $.ajax({
                     url:"insert.php",
                     method:"POST",
@@ -499,17 +421,9 @@
                         $(location).attr('href', 'table_list.php');
                     }
                 });
-
             }
         });
-
-
     });
-
-
-
 </script>
-
-
 </body>
 </html>

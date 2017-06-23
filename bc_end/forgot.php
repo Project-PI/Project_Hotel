@@ -30,7 +30,6 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
 
                 $_SESSION['message'] = "Your password has been reset successfully!";
                 header("location: success.php");
-
             }
 
         }
