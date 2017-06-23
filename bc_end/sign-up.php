@@ -103,12 +103,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                         <p>Table List</p>
                     </a>
                 </li>
-                <li>
+                <li  class="active">
                     <a href="sign-up.php">
                         <i class="material-icons">library_books</i>
                         <p>Sign up</p>
                     </a>
-                </li class="active">
+                </li>
                 <li class="active-pro">
                     <a href="logout.php">
                         <i class="material-icons" name="logout">unarchive</i>
