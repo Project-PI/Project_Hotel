@@ -43,7 +43,6 @@ else {
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
 
     <!--   Core JS Files   -->
-    <script src="assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
     <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="assets/js/material.min.js" type="text/javascript"></script>
 
@@ -59,12 +58,18 @@ else {
 
     <!-- Material Dashboard DEMO methods, don't include it in your project! -->
     <script src="assets/js/demo.js"></script>
+
+    <script src="source/jquery.min.js"></script>
+    <script src="source/jquery-ui.js"></script>
+    <link rel="stylesheet" href="source/jquery-ui.css">
+
+
 </head>
 
 <body>
 
 <div class="wrapper">
-    <div class="sidebar" data-color="purple" data-image="assets/img/sidebar-1.jpg">
+    <div class="sidebar" data-color="purple" data-image="./assets/img/sidebar-1.jpg">
         <!--
             Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
 
@@ -174,7 +179,7 @@ else {
                                     <input type="text" name="to_date" id="to_date1" class="form-control" placeholder="To Date" />
                                 </div>
                                 <div class="col-md-3">
-                                    <button type="button" name="filter" id="filter" value="Filter" class="btn btn-white btn-round btn-just-icon" >
+                                    <button type="submit" name="filter" id="filter" value="Filter" class="btn btn-white btn-round btn-just-icon" >
                                         <i class="material-icons">search</i><div class="ripple-container"></div>
                                     </button>
                                 </div>
@@ -358,7 +363,7 @@ else {
             if(from_date != '' && to_date != '')
             {
                 $.ajax({
-                    url:"filter.php",
+                    url:"files/filter.php",
                     method:"POST",
                     data:{from_date:from_date, to_date:to_date},
                     success:function(data)
